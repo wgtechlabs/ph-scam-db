@@ -15,7 +15,7 @@ PH Scam DB treats Git as the source of truth. Community submissions are reviewed
 - Generated full index and confirmed-only JSON/text blocklists
 - Structured report and appeal forms
 - Public moderation, privacy, security, and contribution policies
-- Strict TypeScript, Bun-based tests/build, and GitHub Actions CI
+- Strict TypeScript, Node.js 26, Bun-based tests/build, and GitHub Actions CI
 - Dependency-light static site suitable for GitHub Pages or any static host
 
 ## Architecture
@@ -37,7 +37,7 @@ The repository deliberately does not store raw screenshots, message transcripts,
 
 ## Getting started
 
-Requirements: [Bun](https://bun.sh/) 1.3.9 or later. Project code uses standard Node.js APIs where practical; Bun is the package manager, TypeScript runtime, test runner, and bundler.
+Requirements: Node.js 26.5.0 or later within the Node.js 26 release line, plus [Bun](https://bun.sh/) 1.3.9 or later. Node.js 26 is the application runtime contract; Bun is the package manager, TypeScript toolchain, test runner, and bundler.
 
 ```sh
 git clone https://github.com/wgtechlabs/ph-scam-db.git
@@ -96,4 +96,4 @@ This is an early MVP. The initial database is intentionally empty: no number is 
 
 ## License
 
-The software is available under the [MIT License](LICENSE). A dedicated license for the compiled community dataset must be selected before accepting public data contributions.
+The software, source records, and generated community dataset are available under the [MIT License](LICENSE). By contributing database records, contributors agree to license those contributions under the same terms.

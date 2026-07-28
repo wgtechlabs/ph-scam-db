@@ -2,6 +2,8 @@
 
 Thank you for helping build PH Scam DB. Contributions may affect real people, so data changes receive more scrutiny than ordinary code changes.
 
+By contributing code, documentation, or database records, you agree to license the contribution under the repository's [MIT License](LICENSE).
+
 ## Report a number
 
 Use the **Report a phone number** issue form. Do not open a data pull request for an unreviewed allegation. Issues are public: never attach screenshots or include names, OTPs, addresses, financial details, message transcripts, or other personal information.

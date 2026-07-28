@@ -2,7 +2,8 @@
 
 [![build workflow](https://img.shields.io/github/actions/workflow/status/wgtechlabs/ph-scam-db/ci.yml?branch=dev&style=flat-square&logo=github&label=build&labelColor=181717)](https://github.com/wgtechlabs/ph-scam-db/actions/workflows/ci.yml) [![star](https://img.shields.io/github/stars/wgtechlabs/ph-scam-db.svg?logo=github&labelColor=181717&color=yellow&style=flat-square)](https://github.com/wgtechlabs/ph-scam-db/stargazers) [![license](https://img.shields.io/github/license/wgtechlabs/ph-scam-db.svg?&logo=github&labelColor=181717&style=flat-square)](https://github.com/wgtechlabs/ph-scam-db/blob/dev/LICENSE)
 
-[![PH Scam DB banner](https://ghrb.waren.build/banner?header=%F0%9F%9B%A1%EF%B8%8F+PH+Scam+DB&subheader=Open-source+scam+phone-number+intelligence+for+the+Philippines&bg=071c17-14532d&color=ffffff&support=true)](https://github.com/wgtechlabs/ph-scam-db)<!-- Created with GitHub Repo Banner by Waren Gonzaga: https://ghrb.waren.build -->
+[![PH Scam DB – GitHub Repo Banner](https://ghrb.waren.build/banner?header=PH+Scam+DB+%F0%9F%9B%A1%EF%B8%8F&subheader=Open-source+PH+scam+number+database&bg=013B84-016EEA&color=FFFFFF)](https://github.com/wgtechlabs/ph-scam-db)
+<!-- Created with GitHub Repo Banner by Waren Gonzaga: https://ghrb.waren.build -->
 
 **Open-source scam phone-number intelligence for the Philippines** — a community-maintained database of Philippine mobile numbers reported for scam calls and messages.
 

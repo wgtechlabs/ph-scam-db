@@ -40,6 +40,40 @@
           <article><h3>Right to appeal</h3><p>Owners can request correction or removal through a documented process.</p></article>
         </div>
       </section>
+
+      <section class="integrations" aria-labelledby="integrations-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">For developers</p>
+            <h2 id="integrations-title">Build with PH Scam DB</h2>
+          </div>
+          <a href="https://github.com/wgtechlabs/ph-scam-db#use-the-data">Full integration guide</a>
+        </div>
+        <div class="integration-grid">
+          <article>
+            <h3>Look up a report</h3>
+            <p>Fetch the complete public index and match a normalized E.164 number.</p>
+            <pre><code>const db = await fetch(
+  'https://wgtechlabs.com/ph-scam-db/data/index.json'
+).then((r) =&gt; r.json());
+
+const report = db.entries.find(
+  (entry) =&gt; entry.number === '+639171234567'
+);</code></pre>
+          </article>
+          <article>
+            <h3>Use the confirmed blocklist</h3>
+            <p>Use the smaller confirmed-only feed for a block or warning decision.</p>
+            <pre><code>const blocklist = await fetch(
+  'https://wgtechlabs.com/ph-scam-db/data/blocklist.json'
+).then((r) =&gt; r.json());
+
+const isBlocked = blocklist.includes(
+  '+639171234567'
+);</code></pre>
+          </article>
+        </div>
+      </section>
     </main>
 
     <footer>

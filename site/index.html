@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Check community reports about Philippine mobile numbers.">
+    <title>PH Scam DB — Check a number</title>
+    <link rel="stylesheet" href="styles.css">
+    <script type="module" src="app.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="./" aria-label="PH Scam DB home"><span aria-hidden="true">PH</span> Scam DB</a>
+      <a class="secondary-link" href="https://github.com/wgtechlabs/ph-scam-db/issues/new?template=report-number.yml">Report a number</a>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="title">
+        <p class="eyebrow">Open community registry</p>
+        <h1 id="title">Has this number been reported?</h1>
+        <p class="lede">Search reports of scam calls and messages involving Philippine mobile numbers.</p>
+
+        <form id="lookup-form" class="lookup" novalidate>
+          <label for="phone">Philippine mobile number</label>
+          <div class="input-row">
+            <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="0917 123 4567" aria-describedby="phone-hint" required>
+            <button type="submit">Check number</button>
+          </div>
+          <p id="phone-hint" class="hint">We normalize common formats to +63. Searches happen in your browser.</p>
+        </form>
+      </section>
+
+      <section id="result" class="result" aria-live="polite" hidden></section>
+
+      <section class="principles" aria-labelledby="principles-title">
+        <h2 id="principles-title">Transparent by design</h2>
+        <div class="card-grid">
+          <article><h3>Open data</h3><p>Every published classification is versioned and available as JSON or text.</p></article>
+          <article><h3>Human review</h3><p>Submissions are reviewed before they can become confirmed entries.</p></article>
+          <article><h3>Right to appeal</h3><p>Owners can request correction or removal through a documented process.</p></article>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>Community reports are not legal findings. No result does not guarantee safety.</p>
+      <nav aria-label="Project links">
+        <a href="data/index.json">JSON data</a>
+        <a href="data/blocklist.txt">Blocklist</a>
+        <a href="https://github.com/wgtechlabs/ph-scam-db">GitHub</a>
+      </nav>
+    </footer>
+  </body>
+</html>

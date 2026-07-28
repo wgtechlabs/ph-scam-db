@@ -1,0 +1,26 @@
+{
+  "name": "ph-scam-db",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Open, community-maintained Philippine scam number database",
+  "scripts": {
+    "build": "bun scripts/build.ts",
+    "check": "bun run typecheck && bun run validate && bun test && bun run build",
+    "serve": "bun scripts/serve.ts",
+    "test": "bun test",
+    "typecheck": "tsc --noEmit",
+    "validate": "bun scripts/validate.ts"
+  },
+  "packageManager": "bun@1.3.9",
+  "engines": {
+    "node": ">=22"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.3.9",
+    "ajv": "^8.17.1",
+    "ajv-formats": "^3.0.1",
+    "typescript": "^5.9.2"
+  },
+  "license": "MIT"
+}

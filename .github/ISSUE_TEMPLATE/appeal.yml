@@ -1,0 +1,40 @@
+name: Appeal or correction
+description: Request review of an existing database entry
+title: "[Appeal]: "
+labels: [appeal, needs-triage]
+body:
+  - type: markdown
+    attributes:
+      value: Do not post identity documents, account records, or other private evidence in this public issue.
+  - type: input
+    id: number
+    attributes:
+      label: Listed phone number
+      placeholder: +639XXXXXXXXX
+    validations:
+      required: true
+  - type: dropdown
+    id: request
+    attributes:
+      label: Requested action
+      options:
+        - Correct the entry
+        - Re-review the classification
+        - Remove an expired or reassigned number
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: reason
+    attributes:
+      label: Reason
+      description: Explain the request without including private evidence.
+    validations:
+      required: true
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: Privacy check
+      options:
+        - label: I have not included personal or confidential information.
+          required: true

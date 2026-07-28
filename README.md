@@ -89,26 +89,30 @@ After `bun run build`, generated artifacts are available under `dist/data/`:
 The feeds are public, versioned, and browser-friendly. Fetch the full index when your app needs categories and review status:
 
 ```js
-const database = await fetch(
-  'https://wgtechlabs.com/ph-scam-db/data/index.json'
-).then((response) => response.json());
+(async () => {
+  const database = await fetch(
+    'https://wgtechlabs.com/ph-scam-db/data/index.json'
+  ).then((response) => response.json());
 
-const normalizedNumber = '+639171234567';
-const report = database.entries.find((entry) => entry.number === normalizedNumber);
+  const normalizedNumber = '+639171234567';
+  const report = database.entries.find((entry) => entry.number === normalizedNumber);
 
-if (report) {
-  console.log(report.status, report.categories);
-}
+  if (report) {
+    console.log(report.status, report.categories);
+  }
+})();
 ```
 
 For an allow/block decision, use the smaller confirmed-only feed:
 
 ```js
-const blocklist = await fetch(
-  'https://wgtechlabs.com/ph-scam-db/data/blocklist.json'
-).then((response) => response.json());
+(async () => {
+  const blocklist = await fetch(
+    'https://wgtechlabs.com/ph-scam-db/data/blocklist.json'
+  ).then((response) => response.json());
 
-const isBlocked = blocklist.includes('+639171234567');
+  const isBlocked = blocklist.includes('+639171234567');
+})();
 ```
 
 Requests from browser apps are supported through CORS. Normalize Philippine mobile input to E.164 before checking it—for example, `0917 123 4567` becomes `+639171234567`. Cache the feed locally and refresh it periodically rather than requesting it on every lookup.

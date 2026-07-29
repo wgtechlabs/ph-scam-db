@@ -5,6 +5,8 @@ const report: ScamReport = {
   number: '+639171234567',
   categories: ['spam'],
   status: 'reported',
+  riskLevel: 'low',
+  verdict: 'warn',
   firstReportedAt: '2025-01-01',
   lastReportedAt: '2025-01-02',
   reportCount: 1,
@@ -22,4 +24,11 @@ test('detects duplicate numbers and reversed dates', () => {
     { file: 'two.json', value: reversed }
   ]);
   expect(errors).toHaveLength(2);
+});
+
+test('requires confirmed status for block verdicts', () => {
+  const errors = validateSemantics([
+    { file: 'one.json', value: { ...report, riskLevel: 'high', verdict: 'block' } }
+  ]);
+  expect(errors).toEqual(['one.json: block verdict requires confirmed status']);
 });

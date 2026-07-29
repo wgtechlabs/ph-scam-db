@@ -33,6 +33,8 @@ button:hover { background: var(--accent-dark); }
 button:focus-visible, input:focus-visible, a:focus-visible { outline: 3px solid #77b8ff; outline-offset: 3px; }
 .hint { margin: 10px 4px; color: var(--muted); font-size: .84rem; }
 .result { max-width: 680px; margin: 0 auto 76px; padding: 28px; border: 1px solid var(--line); border-left: 6px solid var(--accent); border-radius: 12px; background: var(--surface); }
+.result[data-kind="block"] { border-left-color: var(--danger); }
+.result[data-kind="warn"] { border-left-color: var(--warning); }
 .result[data-kind="confirmed"] { border-left-color: var(--danger); }
 .result[data-kind="watchlist"] { border-left-color: var(--warning); }
 .result h2 { margin: 0 0 8px; font-size: 1.5rem; }

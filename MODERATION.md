@@ -12,6 +12,12 @@ PH Scam DB records community reports, not legal findings. Moderators apply consi
 
 Report counts alone never determine status. Moderators consider spoofed caller ID, recycled numbers, coordinated reporting, age, detail consistency, and public sources.
 
+## Risk and verdicts
+
+`riskLevel` describes threat severity for consumer app presentation and moderation priority. Use `low`, `medium`, or `high`.
+
+`verdict` describes the recommended consumer app action. Use `warn` for caution labels, warning screens, or extra confirmation. Use `block` only when the record is `confirmed`; reported and watchlist entries should remain warnings until stronger review supports blocking.
+
 ## Review workflow
 
 1. Redact or close submissions that expose personal information.

@@ -64,6 +64,8 @@ Each reviewed record conforms to [`schemas/report.schema.json`](schemas/report.s
   "number": "+639171234567",
   "categories": ["phishing-sms"],
   "status": "reported",
+  "riskLevel": "medium",
+  "verdict": "warn",
   "firstReportedAt": "2026-07-01",
   "lastReportedAt": "2026-07-01",
   "reportCount": 1,
@@ -74,15 +76,17 @@ Each reviewed record conforms to [`schemas/report.schema.json`](schemas/report.s
 
 The example is fictional and is not included in the published database.
 
+`status` describes evidence confidence, `riskLevel` describes threat severity, and `verdict` gives consumer apps a recommended action. Use `warn` for caution UI and `block` for entries that should be filtered or hard-stopped.
+
 ## Public feeds
 
 After `bun run build`, generated artifacts are available under `dist/data/`:
 
 | Feed | Contents |
 | --- | --- |
-| `index.json` | All reviewed public records with status and aggregate metadata |
-| `blocklist.json` | E.164 numbers whose status is `confirmed` |
-| `blocklist.txt` | Newline-separated confirmed numbers for simple integrations |
+| `index.json` | All reviewed public records with verdict, risk, status, and aggregate metadata |
+| `blocklist.json` | E.164 numbers whose verdict is `block` |
+| `blocklist.txt` | Newline-separated blocked numbers for simple integrations |
 
 ## Use the data
 
@@ -98,12 +102,12 @@ The feeds are public, versioned, and browser-friendly. Fetch the full index when
   const report = database.entries.find((entry) => entry.number === normalizedNumber);
 
   if (report) {
-    console.log(report.status, report.categories);
+    console.log(report.verdict, report.riskLevel, report.status, report.categories);
   }
 })();
 ```
 
-For an allow/block decision, use the smaller confirmed-only feed:
+For an allow/block decision, use the smaller blocked-number feed:
 
 ```js
 (async () => {

@@ -5,6 +5,10 @@ import addFormats from 'ajv-formats';
 
 export const statuses = ['reported', 'watchlist', 'confirmed'] as const;
 export type ReportStatus = (typeof statuses)[number];
+export const riskLevels = ['low', 'medium', 'high'] as const;
+export type RiskLevel = (typeof riskLevels)[number];
+export const verdicts = ['warn', 'block'] as const;
+export type Verdict = (typeof verdicts)[number];
 
 export interface ReportReference {
   type: 'github-issue' | 'government-advisory' | 'news-report' | 'maintainer-review';
@@ -15,6 +19,8 @@ export interface ScamReport {
   number: string;
   categories: string[];
   status: ReportStatus;
+  riskLevel: RiskLevel;
+  verdict: Verdict;
   firstReportedAt: string;
   lastReportedAt: string;
   reportCount: number;
@@ -70,6 +76,7 @@ export function validateSemantics(reports: ReportFile[]): string[] {
     if (value.firstReportedAt > value.lastReportedAt) errors.push(`${file}: first report is after last report`);
     if (value.lastReportedAt > today) errors.push(`${file}: last report is in the future`);
     if (value.expiresAt && value.expiresAt <= value.lastReportedAt) errors.push(`${file}: expiry must follow last report`);
+    if (value.verdict === 'block' && value.status !== 'confirmed') errors.push(`${file}: block verdict requires confirmed status`);
   }
 
   return errors;

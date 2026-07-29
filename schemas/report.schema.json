@@ -8,6 +8,8 @@
     "number",
     "categories",
     "status",
+    "riskLevel",
+    "verdict",
     "firstReportedAt",
     "lastReportedAt",
     "reportCount",
@@ -39,6 +41,14 @@
     },
     "status": {
       "enum": ["reported", "watchlist", "confirmed"]
+    },
+    "riskLevel": {
+      "enum": ["low", "medium", "high"],
+      "description": "Threat severity for consumer app presentation and prioritization"
+    },
+    "verdict": {
+      "enum": ["warn", "block"],
+      "description": "Recommended consumer app action"
     },
     "firstReportedAt": {
       "type": "string",

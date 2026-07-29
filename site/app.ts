@@ -1,9 +1,13 @@
 type ReportStatus = 'reported' | 'watchlist' | 'confirmed';
+type RiskLevel = 'low' | 'medium' | 'high';
+type Verdict = 'warn' | 'block';
 
 interface ScamReport {
   number: string;
   categories: string[];
   status: ReportStatus;
+  riskLevel: RiskLevel;
+  verdict: Verdict;
   lastReportedAt: string;
   reportCount: number;
 }
@@ -75,7 +79,9 @@ form.addEventListener('submit', async (event) => {
       return;
     }
 
-    show(entry.status, 'This number has community reports', [
+    show(entry.verdict, 'This number has community reports', [
+      paragraph(`Verdict: ${entry.verdict}`, 'status'),
+      paragraph(`Risk: ${entry.riskLevel}`),
       paragraph(`Status: ${entry.status}`, 'status'),
       paragraph(`Reports: ${entry.reportCount} · Last observed: ${entry.lastReportedAt}`),
       paragraph(`Categories: ${entry.categories.join(', ').replaceAll('-', ' ')}`)

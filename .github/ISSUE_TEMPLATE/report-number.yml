@@ -1,6 +1,6 @@
 name: Report a phone number
 description: Submit a Philippine mobile number for maintainer review
-title: "[Report]: "
+title: "[Report]: auto-filled after submission"
 labels: [report, needs-triage]
 body:
   - type: markdown

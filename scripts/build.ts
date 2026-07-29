@@ -13,9 +13,9 @@ const semanticErrors = validateSemantics(reports);
 if (semanticErrors.length) throw new Error(semanticErrors.join('\n'));
 
 const entries = reports.map(({ value }) => value).sort((a, b) => a.number.localeCompare(b.number));
-const confirmed = entries.filter((entry) => entry.status === 'confirmed');
+const blocked = entries.filter((entry) => entry.verdict === 'block');
 const publicIndex = {
-  schemaVersion: 1,
+  schemaVersion: 2,
   generatedAt: new Date().toISOString(),
   count: entries.length,
   entries
@@ -36,7 +36,7 @@ const bundle = await Bun.build({
 if (!bundle.success) throw new AggregateError(bundle.logs, 'Browser bundle failed');
 
 await writeFile(path.join(root, 'dist/data/index.json'), `${JSON.stringify(publicIndex, null, 2)}\n`);
-await writeFile(path.join(root, 'dist/data/blocklist.json'), `${JSON.stringify(confirmed.map((entry) => entry.number), null, 2)}\n`);
-await writeFile(path.join(root, 'dist/data/blocklist.txt'), confirmed.length ? `${confirmed.map((entry) => entry.number).join('\n')}\n` : '');
+await writeFile(path.join(root, 'dist/data/blocklist.json'), `${JSON.stringify(blocked.map((entry) => entry.number), null, 2)}\n`);
+await writeFile(path.join(root, 'dist/data/blocklist.txt'), blocked.length ? `${blocked.map((entry) => entry.number).join('\n')}\n` : '');
 
 console.log(`Built site and feeds from ${entries.length} report${entries.length === 1 ? '' : 's'}.`);

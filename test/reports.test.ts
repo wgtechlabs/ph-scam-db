@@ -1,5 +1,9 @@
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { expect, test } from 'bun:test';
 import { createReportValidator, type ScamReport, validateSemantics } from '../scripts/lib/reports.ts';
+
+const repositoryRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 
 const report: ScamReport = {
   number: '+639171234567',
@@ -18,7 +22,7 @@ test('accepts coherent report dates and unique numbers', () => {
 });
 
 test('accepts a Philippine landline report', async () => {
-  const validate = await createReportValidator(process.cwd());
+  const validate = await createReportValidator(repositoryRoot);
   expect(validate({ ...report, number: '+63281234567' })).toBe(true);
 });
 

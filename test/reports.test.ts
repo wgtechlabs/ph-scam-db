@@ -1,5 +1,5 @@
 import { expect, test } from 'bun:test';
-import { type ScamReport, validateSemantics } from '../scripts/lib/reports.ts';
+import { createReportValidator, type ScamReport, validateSemantics } from '../scripts/lib/reports.ts';
 
 const report: ScamReport = {
   number: '+639171234567',
@@ -15,6 +15,11 @@ const report: ScamReport = {
 
 test('accepts coherent report dates and unique numbers', () => {
   expect(validateSemantics([{ file: 'one.json', value: report }])).toEqual([]);
+});
+
+test('accepts a Philippine landline report', async () => {
+  const validate = await createReportValidator(process.cwd());
+  expect(validate({ ...report, number: '+63281234567' })).toBe(true);
 });
 
 test('detects duplicate numbers and reversed dates', () => {

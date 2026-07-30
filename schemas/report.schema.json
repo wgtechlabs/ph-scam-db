@@ -18,8 +18,8 @@
   "properties": {
     "number": {
       "type": "string",
-      "pattern": "^\\+639\\d{9}$",
-      "description": "Philippine mobile number in E.164 format"
+      "pattern": "^\\+63(?:9\\d{9}|[2-8]\\d{8})$",
+      "description": "Philippine mobile or geographic landline number in E.164 format"
     },
     "categories": {
       "type": "array",

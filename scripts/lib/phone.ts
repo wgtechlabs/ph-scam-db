@@ -1,4 +1,4 @@
-const E164_PH_MOBILE = /^\+639\d{9}$/;
+const E164_PH_PHONE = /^\+63(?:9\d{9}|[2-8]\d{8})$/;
 
 export function normalizePhoneNumber(input: unknown): string | null {
   if (typeof input !== 'string') return null;
@@ -6,9 +6,9 @@ export function normalizePhoneNumber(input: unknown): string | null {
   let value = input.trim().replace(/[\s().-]/g, '');
   if (value.startsWith('0063')) value = `+63${value.slice(4)}`;
   if (value.startsWith('63')) value = `+${value}`;
-  if (value.startsWith('09')) value = `+63${value.slice(1)}`;
+  if (value.startsWith('0')) value = `+63${value.slice(1)}`;
 
-  return E164_PH_MOBILE.test(value) ? value : null;
+  return E164_PH_PHONE.test(value) ? value : null;
 }
 
 export function maskPhoneNumber(number: string): string {

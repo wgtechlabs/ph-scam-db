@@ -5,7 +5,7 @@
 [![PH Scam DB – GitHub Repo Banner](https://ghrb.waren.build/banner?header=PH+Scam+DB+%F0%9F%9B%A1%EF%B8%8F&subheader=Open-source+PH+scam+number+database&bg=013B84-016EEA&color=FFFFFF)](https://github.com/wgtechlabs/ph-scam-db)
 <!-- Created with GitHub Repo Banner by Waren Gonzaga: https://ghrb.waren.build -->
 
-**Open-source scam phone-number intelligence for the Philippines** — a community-maintained database of Philippine mobile numbers reported for scam calls and messages.
+**Open-source scam phone-number intelligence for the Philippines** — a community-maintained database of Philippine mobile and landline numbers reported for scam calls and messages.
 
 PH Scam DB treats Git as the source of truth. Community submissions are reviewed, normalized, and stored as small schema-validated records. The build generates a searchable static website and machine-readable feeds that other projects can consume.
 
@@ -14,7 +14,7 @@ PH Scam DB treats Git as the source of truth. Community submissions are reviewed
 
 ## MVP features
 
-- Philippine mobile-number lookup with common-format normalization
+- Philippine mobile and landline lookup with common-format normalization
 - Three review states: `reported`, `watchlist`, and `confirmed`
 - JSON Schema plus chronological, uniqueness, and expiry validation
 - Generated full index and confirmed-only JSON/text blocklists
@@ -119,7 +119,7 @@ For an allow/block decision, use the smaller blocked-number feed:
 })();
 ```
 
-Requests from browser apps are supported through CORS. Normalize Philippine mobile input to E.164 before checking it—for example, `0917 123 4567` becomes `+639171234567`. Cache the feed locally and refresh it periodically rather than requesting it on every lookup.
+Requests from browser apps are supported through CORS. Normalize Philippine phone input to E.164 before checking it—for example, `0917 123 4567` becomes `+639171234567`, while `(02) 8123 4567` becomes `+63281234567`. Landline input must include its area code. Cache the feed locally and refresh it periodically rather than requesting it on every lookup.
 
 Consumers should pin a known revision, validate `schemaVersion`, refresh conservatively, and preserve the distinction between a community report and a legal determination.
 

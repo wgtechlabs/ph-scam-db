@@ -1,5 +1,5 @@
 name: Report a phone number
-description: Submit a Philippine mobile number for maintainer review
+description: Submit a Philippine mobile or landline number for maintainer review
 title: "[Report]: auto-filled after submission"
 labels: [report, needs-triage]
 body:
@@ -11,8 +11,8 @@ body:
     id: number
     attributes:
       label: Phone number
-      description: Use a Philippine mobile format such as 09171234567 or +639171234567.
-      placeholder: +639XXXXXXXXX
+      description: Use a Philippine mobile or landline format, including the area code for landlines.
+      placeholder: 09171234567 or (02) 8123-4567
     validations:
       required: true
   - type: dropdown

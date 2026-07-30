@@ -1,0 +1,84 @@
+name: Report multiple phone numbers
+description: Submit several Philippine mobile numbers for maintainer review
+title: "[Report]: auto-filled after submission"
+labels: [report, needs-triage]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping protect the community. Issues are public. Do not include names, screenshots, OTPs, addresses, account balances, message transcripts, or other personal information.
+
+        Use this form only when the numbers were observed in the same campaign or pattern. For unrelated incidents, open separate reports.
+  - type: textarea
+    id: numbers
+    attributes:
+      label: Phone numbers
+      description: Enter one Philippine mobile number per line. Use common local or E.164 format, such as 09171234567 or +639171234567.
+      placeholder: |
+        +639171234567
+        09181234567
+        09991234567
+    validations:
+      required: true
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      options:
+        - Phishing SMS
+        - Impersonation
+        - Fake delivery
+        - Investment scam
+        - Loan scam
+        - Advance-fee scam
+        - Robocall
+        - Spam
+        - Other
+    validations:
+      required: true
+  - type: input
+    id: date
+    attributes:
+      label: Date observed
+      description: Use YYYY-MM-DD. Do not submit an incident more than 90 days old without a public source.
+      placeholder: "2026-07-30"
+    validations:
+      required: true
+  - type: dropdown
+    id: channel
+    attributes:
+      label: Contact channel
+      options:
+        - Phone call
+        - SMS
+        - WhatsApp
+        - Viber
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: pattern
+    attributes:
+      label: Shared pattern
+      description: Briefly describe why these numbers belong together. Redact all personal and financial information.
+      placeholder: The messages used the same fake delivery wording and linked to the same suspicious domain.
+    validations:
+      required: true
+  - type: input
+    id: public_reference
+    attributes:
+      label: Public reference (optional)
+      description: A government advisory, news report, or other non-personal public source.
+  - type: checkboxes
+    id: declarations
+    attributes:
+      label: Declaration
+      options:
+        - label: I have removed personal, financial, and authentication information.
+          required: true
+        - label: I am reporting these numbers in good faith and understand that submission does not guarantee publication.
+          required: true
+        - label: I understand that report volume alone does not make a number confirmed.
+          required: true
+        - label: I understand that intentionally false reports may be rejected and restricted.
+          required: true

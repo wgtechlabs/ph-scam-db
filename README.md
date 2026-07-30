@@ -18,7 +18,7 @@ PH Scam DB treats Git as the source of truth. Community submissions are reviewed
 - Three review states: `reported`, `watchlist`, and `confirmed`
 - JSON Schema plus chronological, uniqueness, and expiry validation
 - Generated full index and confirmed-only JSON/text blocklists
-- Structured report and appeal forms
+- Structured single-number, bulk report, and appeal forms
 - Public moderation, privacy, security, and contribution policies
 - Strict TypeScript, Node.js 26, Bun-based tests/build, and GitHub Actions CI
 - Dependency-light static site suitable for GitHub Pages or any static host
@@ -126,6 +126,7 @@ Consumers should pin a known revision, validate `schemaVersion`, refresh conserv
 ## Reporting and contributing
 
 - [Report a suspected scam number](https://github.com/wgtechlabs/ph-scam-db/issues/new?template=report-number.yml)
+- [Report multiple suspected scam numbers](https://github.com/wgtechlabs/ph-scam-db/issues/new?template=bulk-report-numbers.yml)
 - [Appeal or correct an entry](https://github.com/wgtechlabs/ph-scam-db/issues/new?template=appeal.yml)
 - Read [CONTRIBUTING.md](CONTRIBUTING.md) before changing data or code
 - Use [Clean Commit](https://github.com/wgtechlabs/clean-commit) for every commit

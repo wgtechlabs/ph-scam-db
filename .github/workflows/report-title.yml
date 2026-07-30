@@ -22,17 +22,29 @@ jobs:
               return body.match(new RegExp(`^### ${escaped}\\s+([\\s\\S]*?)(?=\\n###|$)`, 'm'))?.[1].trim();
             }
 
-            let number = field('Phone number')?.split(/\r?\n/)[0]?.trim() ?? '';
-            number = number.replace(/[\s().-]/g, '');
-            if (number.startsWith('0063')) number = `+63${number.slice(4)}`;
-            if (number.startsWith('63')) number = `+${number}`;
-            if (number.startsWith('09')) number = `+63${number.slice(1)}`;
-            if (!/^\+639\d{9}$/.test(number)) return;
+            function normalizeNumber(value) {
+              let number = value.trim().replace(/[\s().-]/g, '');
+              if (number.startsWith('0063')) number = `+63${number.slice(4)}`;
+              if (number.startsWith('63')) number = `+${number}`;
+              if (number.startsWith('09')) number = `+63${number.slice(1)}`;
+              return /^\+639\d{9}$/.test(number) ? number : '';
+            }
+
+            const singleNumber = normalizeNumber(field('Phone number')?.split(/\r?\n/)[0] ?? '');
+            const bulkNumbers = (field('Phone numbers') ?? '')
+              .split(/\r?\n/)
+              .map(normalizeNumber)
+              .filter(Boolean);
+            const numbers = singleNumber ? [singleNumber] : [...new Set(bulkNumbers)];
+            if (!numbers.length) return;
 
             const category = field('Category')?.split(/\r?\n/)[0]?.trim();
             if (!category) return;
 
-            const title = `[Report]: ${number} (${category})`;
+            const listedNumbers = numbers.slice(0, 3).join(', ');
+            const title = numbers.length <= 3
+              ? `[Report]: ${listedNumbers} (${category})`
+              : `[Report]: Bulk Submission #${context.issue.number} (${category})`;
             if (context.payload.issue.title === title) return;
 
             await github.rest.issues.update({

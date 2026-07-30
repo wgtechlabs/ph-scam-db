@@ -4,93 +4,110 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Check community reports about Philippine mobile and landline numbers.">
-    <title>PH Scam DB — Check a number</title>
-    <link rel="stylesheet" href="styles.css?v=ec22c6b">
+    <meta name="theme-color" content="#07101f">
+    <title>PH Scam DB - Check a number</title>
+    <link rel="icon" href="logo.png" type="image/png">
+    <link rel="stylesheet" href="styles.css?v=dark-ui">
     <script type="module" src="app.js"></script>
   </head>
   <body>
     <header class="topbar">
-      <a class="brand" href="./" aria-label="PH Scam DB home"><span aria-hidden="true">PH</span> Scam DB</a>
-      <nav class="report-links" aria-label="Report links">
-        <a class="secondary-link" href="https://github.com/wgtechlabs/ph-scam-db/issues/new?template=report-number.yml">Report a number</a>
-        <a class="secondary-link" href="https://github.com/wgtechlabs/ph-scam-db/issues/new?template=bulk-report-numbers.yml">Bulk report</a>
+      <a class="brand" href="./" aria-label="PH Scam DB home">
+        <img src="logo.png" alt="" width="40" height="40">
+        <span>PH Scam DB</span>
+      </a>
+      <nav aria-label="Primary navigation">
+        <a href="https://github.com/wgtechlabs/ph-scam-db/issues/new?template=bulk-report-numbers.yml">Bulk report</a>
+        <a class="nav-action" href="https://github.com/wgtechlabs/ph-scam-db/issues/new?template=report-number.yml">Report a number</a>
       </nav>
     </header>
 
     <main>
       <section class="hero" aria-labelledby="title">
-        <p class="eyebrow">Open community registry</p>
-        <h1 id="title">Has this number been reported?</h1>
-        <p class="lede">Search reports of scam calls and messages involving Philippine mobile and landline numbers.</p>
+        <div class="hero-copy">
+          <p class="eyebrow">Community-maintained scam registry</p>
+          <h1 id="title">Check a Philippine phone number</h1>
+          <p class="lede">See whether a number has community reports before you answer, reply, or send money.</p>
+        </div>
 
         <form id="lookup-form" class="lookup" novalidate>
-          <label for="phone">Philippine phone number</label>
+          <label for="phone">Phone number</label>
           <div class="input-row">
             <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="0917 123 4567 or (02) 8123 4567" aria-describedby="phone-hint" required>
             <button type="submit">Check number</button>
           </div>
-          <p id="phone-hint" class="hint">We normalize common formats to +63. Searches happen in your browser.</p>
+          <p id="phone-hint" class="hint">Common +63 and 09 formats work. Your search stays in this browser.</p>
         </form>
+
+        <section id="result" class="result" aria-live="polite" hidden></section>
       </section>
 
-      <section id="result" class="result" aria-live="polite" hidden></section>
-
-      <section class="principles" aria-labelledby="principles-title">
-        <h2 id="principles-title">Transparent by design</h2>
-        <div class="card-grid">
-          <article><h3>Open data</h3><p>Every published classification is versioned and available as JSON or text.</p></article>
-          <article><h3>Human review</h3><p>Submissions are reviewed before they can become confirmed entries.</p></article>
-          <article><h3>Right to appeal</h3><p>Owners can request correction or removal through a documented process.</p></article>
+      <section class="report-prompt" aria-label="Report suspicious numbers">
+        <p>Received something suspicious?</p>
+        <div>
+          <a href="https://github.com/wgtechlabs/ph-scam-db/issues/new?template=report-number.yml">Report one number</a>
+          <a href="https://github.com/wgtechlabs/ph-scam-db/issues/new?template=bulk-report-numbers.yml">Report multiple numbers</a>
         </div>
       </section>
 
-      <section class="integrations" aria-labelledby="integrations-title">
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">For developers</p>
-            <h2 id="integrations-title">Build with PH Scam DB</h2>
-          </div>
-          <a href="https://github.com/wgtechlabs/ph-scam-db#use-the-data">Full integration guide</a>
+      <section class="trust" aria-labelledby="trust-title">
+        <div class="section-intro">
+          <p class="eyebrow">What to expect</p>
+          <h2 id="trust-title">Useful context, not a final verdict</h2>
         </div>
-        <div class="integration-grid">
+        <div class="trust-list">
           <article>
-            <h3>Look up a report</h3>
-            <p>Fetch the complete public index and match a normalized E.164 number.</p>
-            <pre><code>(async () =&gt; {
-  const db = await fetch(
-    'https://wgtechlabs.com/ph-scam-db/data/index.json'
-  ).then((r) =&gt; r.json());
-
-  const report = db.entries.find(
-    (entry) =&gt; entry.number === '+639171234567'
-  );
-})();</code></pre>
+            <p class="step">01</p>
+            <h3>Community reports</h3>
+            <p>Entries come from public submissions reviewed by maintainers.</p>
           </article>
           <article>
-            <h3>Use the confirmed blocklist</h3>
-            <p>Use the smaller confirmed-only feed for a block or warning decision.</p>
-            <pre><code>(async () =&gt; {
-  const blocklist = await fetch(
-    'https://wgtechlabs.com/ph-scam-db/data/blocklist.json'
-  ).then((r) =&gt; r.json());
-
-  const isBlocked = blocklist.includes(
-    '+639171234567'
-  );
-})();</code></pre>
+            <p class="step">02</p>
+            <h3>Clear status</h3>
+            <p>Results show report count, risk, category, and review status.</p>
+          </article>
+          <article>
+            <p class="step">03</p>
+            <h3>Stay cautious</h3>
+            <p>No result does not guarantee a number is safe.</p>
           </article>
         </div>
       </section>
     </main>
 
-    <footer>
-      <p>Community reports are not legal findings. No result does not guarantee safety.</p>
-      <nav aria-label="Project links">
-        <a href="data/index.json">JSON data</a>
-        <a href="data/blocklist.txt">Blocklist</a>
-        <a href="https://github.com/wgtechlabs/ph-scam-db/issues/new?template=bulk-report-numbers.yml">Bulk report</a>
-        <a href="https://github.com/wgtechlabs/ph-scam-db">GitHub</a>
-      </nav>
+    <footer class="footer">
+      <div class="footer-inner">
+        <div class="footer-main">
+          <div class="footer-column footer-brand-column">
+            <a class="footer-brand" href="./">
+              <img src="logo.png" alt="" width="36" height="36">
+              <span>PH Scam DB</span>
+            </a>
+            <p class="footer-description">An open, community-maintained registry for reports involving Philippine mobile and landline numbers.</p>
+          </div>
+
+          <nav class="footer-column" aria-label="Project links">
+            <h2>Project</h2>
+            <a href="https://github.com/wgtechlabs/ph-scam-db">GitHub Repository</a>
+            <a href="https://github.com/wgtechlabs/ph-scam-db/issues/new?template=report-number.yml">Report a Number</a>
+            <a href="https://github.com/wgtechlabs/ph-scam-db/issues/new?template=bulk-report-numbers.yml">Bulk Report</a>
+            <a href="https://github.com/wgtechlabs/ph-scam-db/blob/main/CONTRIBUTING.md">Contributing Guide</a>
+          </nav>
+
+          <nav class="footer-column" aria-label="Resource links">
+            <h2>Resources</h2>
+            <a href="data/index.json">Open Data</a>
+            <a href="data/blocklist.txt">Confirmed Blocklist</a>
+            <a href="https://github.com/wgtechlabs/ph-scam-db/blob/main/MODERATION.md">Moderation Policy</a>
+            <a href="https://github.com/wgtechlabs/ph-scam-db/blob/main/SECURITY.md">Security Policy</a>
+          </nav>
+        </div>
+
+        <div class="footer-bottom">
+          <p>&copy; 2026 <a href="https://wgtechlabs.com">WG Technology Labs</a>. Licensed under MIT.</p>
+          <p class="footer-bottom-made">&#x1F5A5;&#xFE0F;&#x1F496;&#x2615; by <a href="https://warengonzaga.com">Waren Gonzaga</a> &amp; <a href="https://www.youtube.com/watch?v=VOZbswniA-g">YHWH</a> &#x1F64F; - Without <em>Him</em>, none of this exists, <strong>even me</strong>.</p>
+        </div>
+      </div>
     </footer>
   </body>
 </html>

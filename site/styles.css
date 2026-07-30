@@ -15,7 +15,7 @@
 }
 
 * { box-sizing: border-box; }
-html { background: var(--paper); }
+html { background: var(--paper); overflow-x: hidden; overflow-x: clip; }
 body { min-width: 320px; margin: 0; background: var(--paper); color: var(--ink); line-height: 1.55; }
 a { color: inherit; text-underline-offset: 4px; }
 button, input { font: inherit; }

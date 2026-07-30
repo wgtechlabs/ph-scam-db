@@ -19,7 +19,7 @@ interface PublicDatabase {
 const form = getElement<HTMLFormElement>('lookup-form');
 const input = getElement<HTMLInputElement>('phone');
 const result = getElement<HTMLElement>('result');
-const button = form.querySelector<HTMLButtonElement>('button');
+const button = form.querySelector<HTMLButtonElement>('button[type="submit"]');
 let database: PublicDatabase | undefined;
 
 if (!button) throw new Error('Missing lookup button');

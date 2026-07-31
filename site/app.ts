@@ -74,21 +74,29 @@ function getNetwork(number: string): string {
   return 'Philippine geographic landline';
 }
 
-function updateSearchUrl(number: string | null): void {
+function shareLink(number: string): string {
   const url = new URL(window.location.href);
-  if (number) url.searchParams.set('number', number);
-  else url.searchParams.delete('number');
+  url.search = '';
+  url.hash = '';
+  url.searchParams.set('number', number);
+  return url.href;
+}
+
+function clearSearchUrl(): void {
+  const url = new URL(window.location.href);
+  if (!url.searchParams.has('number')) return;
+  url.searchParams.delete('number');
   window.history.replaceState(null, '', url.pathname + url.search + url.hash);
 }
 
-function shareButton(): HTMLButtonElement {
+function shareButton(number: string): HTMLButtonElement {
   const share = document.createElement('button');
   share.type = 'button';
   share.className = 'result-share';
   share.textContent = 'Copy share link';
   share.addEventListener('click', async () => {
     try {
-      await navigator.clipboard.writeText(window.location.href);
+      await navigator.clipboard.writeText(shareLink(number));
       share.textContent = 'Link copied';
     } catch {
       share.textContent = 'Copy failed';
@@ -101,7 +109,6 @@ function shareButton(): HTMLButtonElement {
 async function search(rawNumber: string, scroll = true): Promise<void> {
   const number = normalizePhoneNumber(rawNumber);
   if (!number) {
-    updateSearchUrl(null);
     input.setAttribute('aria-invalid', 'true');
     show('invalid', 'Check the number', [paragraph('Enter a Philippine mobile or landline number, including the area code for landlines.')], scroll);
     input.focus();
@@ -109,7 +116,6 @@ async function search(rawNumber: string, scroll = true): Promise<void> {
   }
 
   input.removeAttribute('aria-invalid');
-  updateSearchUrl(number);
   button.disabled = true;
   button.textContent = 'Checking...';
   form.setAttribute('aria-busy', 'true');
@@ -130,7 +136,7 @@ async function search(rawNumber: string, scroll = true): Promise<void> {
         paragraph('This number is not in the current community database.'),
         paragraph('Likely network: ' + getNetwork(number)),
         paragraph('This does not guarantee the number is safe. Stay cautious with unexpected requests for money, passwords, or one-time codes.'),
-        shareButton()
+        shareButton(number)
       ], scroll);
       return;
     }
@@ -142,7 +148,7 @@ async function search(rawNumber: string, scroll = true): Promise<void> {
       paragraph('Reports: ' + entry.reportCount + ' | Last observed: ' + entry.lastReportedAt),
       paragraph('Categories: ' + entry.categories.join(', ').replaceAll('-', ' ')),
       paragraph('Likely network: ' + getNetwork(number) + ' (based on number prefix)'),
-      shareButton()
+      shareButton(number)
     ], scroll);
   } catch {
     show('invalid', 'Database unavailable', [paragraph('Please try again later or check the project repository for status updates.')], scroll);
@@ -161,6 +167,7 @@ form.addEventListener('submit', async (event) => {
 input.addEventListener('input', () => input.removeAttribute('aria-invalid'));
 
 const sharedNumber = new URLSearchParams(window.location.search).get('number');
+clearSearchUrl();
 if (sharedNumber) {
   input.value = sharedNumber;
   void search(sharedNumber, false);

@@ -1,3 +1,5 @@
+import { normalizePhoneNumber } from '../scripts/lib/phone.ts';
+
 type ReportStatus = 'reported' | 'watchlist' | 'confirmed';
 type RiskLevel = 'low' | 'medium' | 'high';
 type Verdict = 'warn' | 'block';
@@ -40,14 +42,6 @@ function getSubmitButton(scope: HTMLFormElement): HTMLButtonElement {
   const element = scope.querySelector<HTMLButtonElement>('button[type="submit"]');
   if (!element) throw new Error('Missing lookup button');
   return element;
-}
-
-function normalizePhoneNumber(raw: string): string | null {
-  let value = raw.trim().replace(/[\s().-]/g, '');
-  if (value.startsWith('0063')) value = '+63' + value.slice(4);
-  if (value.startsWith('63')) value = '+' + value;
-  if (value.startsWith('0')) value = '+63' + value.slice(1);
-  return /^\+63(?:9\d{9}|[2-8]\d{8})$/.test(value) ? value : null;
 }
 
 function show(kind: string, title: string, body: HTMLElement[], scroll = true): void {

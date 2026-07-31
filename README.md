@@ -12,7 +12,7 @@ PH Scam DB treats Git as the source of truth. Community submissions are reviewed
 > [!IMPORTANT]
 > Entries represent community reports, not legal findings. A number absent from the database is not necessarily safe. Caller IDs can be spoofed, and phone numbers can be reassigned.
 
-## MVP features
+## ✨ Features
 
 - Philippine mobile and landline lookup with common-format normalization
 - Three review states: `reported`, `watchlist`, and `confirmed`
@@ -23,7 +23,7 @@ PH Scam DB treats Git as the source of truth. Community submissions are reviewed
 - Strict TypeScript, Node.js 26, Bun-based tests/build, and GitHub Actions CI
 - Dependency-light static site suitable for GitHub Pages or any static host
 
-## Architecture
+## 🏗️ Architecture
 
 ```text
 data/reports/*.json          reviewed source records
@@ -40,9 +40,14 @@ data/reports/*.json          reviewed source records
 
 The repository deliberately does not store raw screenshots, message transcripts, identity documents, or reporter details. See [MODERATION.md](MODERATION.md) for the evidence and appeal rules.
 
-## Getting started
+## 🛠️ Prerequisites
 
-Requirements: Node.js 26.5.0 or later within the Node.js 26 release line, plus [Bun](https://bun.sh/) 1.3.9 or later. Node.js 26 is the application runtime contract; Bun is the package manager, TypeScript toolchain, test runner, and bundler.
+- Node.js 26.5.0 or later within the Node.js 26 release line
+- [Bun](https://bun.sh/) 1.3.9 or later
+
+Node.js 26 is the application runtime contract. Bun is the package manager, TypeScript toolchain, test runner, and bundler.
+
+## 🚀 Quick Start
 
 ```sh
 git clone https://github.com/wgtechlabs/ph-scam-db.git
@@ -55,7 +60,7 @@ bun run serve
 
 Open `http://127.0.0.1:4173` to preview the lookup site.
 
-## Data format
+## 📊 Data Format
 
 Each reviewed record conforms to [`schemas/report.schema.json`](schemas/report.schema.json):
 
@@ -78,7 +83,7 @@ The example is fictional and is not included in the published database.
 
 `status` describes evidence confidence, `riskLevel` describes threat severity, and `verdict` gives consumer apps a recommended action. Use `warn` for caution UI and `block` for entries that should be filtered or hard-stopped.
 
-## Public feeds
+## 📡 Public Feeds
 
 After `bun run build`, generated artifacts are available under `dist/data/`:
 
@@ -88,7 +93,7 @@ After `bun run build`, generated artifacts are available under `dist/data/`:
 | `blocklist.json` | E.164 numbers whose verdict is `block` |
 | `blocklist.txt` | Newline-separated blocked numbers for simple integrations |
 
-## Use the data
+## 💻 Use the Data
 
 The feeds are public, versioned, and browser-friendly. Fetch the full index when your app needs categories and review status:
 
@@ -123,7 +128,22 @@ Requests from browser apps are supported through CORS. Normalize Philippine phon
 
 Consumers should pin a known revision, validate `schemaVersion`, refresh conservatively, and preserve the distinction between a community report and a legal determination.
 
-## Reporting and contributing
+## 💬 Community Discussions
+
+Join the community to get help, share ideas, and connect with other contributors:
+
+- 📣 **[Announcements](https://github.com/wgtechlabs/ph-scam-db/discussions/categories/announcements)**: Updates from maintainers
+- 💬 **[General](https://github.com/wgtechlabs/ph-scam-db/discussions/categories/general)**: Chat about anything and everything
+- 🛟 **[Q&A](https://github.com/wgtechlabs/ph-scam-db/discussions/categories/q-a)**: Ask the community for help
+- 🧠 **[Ideas](https://github.com/wgtechlabs/ph-scam-db/discussions/categories/ideas)**: Share ideas for new features
+- 📸 **[Show and tell](https://github.com/wgtechlabs/ph-scam-db/discussions/categories/show-and-tell)**: Show off something you've made
+- 🗳️ **[Polls](https://github.com/wgtechlabs/ph-scam-db/discussions/categories/polls)**: Take a vote with the community
+
+## 🛟 Help & Support
+
+Need help? Browse the [Q&A discussions](https://github.com/wgtechlabs/ph-scam-db/discussions/categories/q-a) or [create a new issue](https://github.com/wgtechlabs/ph-scam-db/issues/new/choose).
+
+## 🎯 Contributing
 
 - [Report a suspected scam number](https://github.com/wgtechlabs/ph-scam-db/issues/new?template=report-number.yml)
 - [Report multiple suspected scam numbers](https://github.com/wgtechlabs/ph-scam-db/issues/new?template=bulk-report-numbers.yml)
@@ -131,12 +151,28 @@ Consumers should pin a known revision, validate `schemaVersion`, refresh conserv
 - Read [CONTRIBUTING.md](CONTRIBUTING.md) before changing data or code
 - Use [Clean Commit](https://github.com/wgtechlabs/clean-commit) for every commit
 
-Pull requests should target `dev`. Releases can be promoted from `dev` to `main` after CI and moderation review.
+**Important**: Submit pull requests to the `dev` branch. Releases can be promoted from `dev` to `main` after CI and moderation review.
 
-## Project status
+## 💖 Sponsors
+
+There are several ways to support the project:
+
+- [Become a sponsor](https://github.com/sponsors/wgtechlabs) and help fund ongoing open-source development
+- [Buy us a coffee](https://buymeacoffee.com/wgtechlabs) as a one-time thank you
+- [Leave a star](https://github.com/wgtechlabs/ph-scam-db/stargazers) to help more people find PH Scam DB
+
+## 📈 Project Status
 
 This is an early MVP. The initial database is intentionally empty: no number is published until it passes the moderation workflow. Before a public launch, maintainers should configure branch protection, GitHub Pages or another static host, labels/discussions, a private evidence channel, and named moderators.
 
-## License
+## 📃 License
 
 The software, source records, and generated community dataset are available under the [MIT License](LICENSE). By contributing database records, contributors agree to license those contributions under the same terms.
+
+## 📝 Author
+
+PH Scam DB is created by **[Waren Gonzaga](https://github.com/warengonzaga)** under [WG Technology Labs](https://github.com/wgtechlabs), with the help of awesome [contributors](https://github.com/wgtechlabs/ph-scam-db/graphs/contributors).
+
+---
+
+💻💖☕ by [Waren Gonzaga](https://warengonzaga.com) | [YHWH](https://www.youtube.com/watch?v=VOZbswniA-g) 🙏 - Without _Him_, none of this exists, _even me_.

@@ -4,6 +4,11 @@ type ReportStatus = 'reported' | 'watchlist' | 'confirmed';
 type RiskLevel = 'low' | 'medium' | 'high';
 type Verdict = 'warn' | 'block';
 
+interface ReportReference {
+  type: 'github-issue' | 'government-advisory' | 'news-report' | 'maintainer-review';
+  id: number | string;
+}
+
 interface ScamReport {
   number: string;
   categories: string[];
@@ -12,6 +17,7 @@ interface ScamReport {
   verdict: Verdict;
   lastReportedAt: string;
   reportCount: number;
+  references: ReportReference[];
 }
 
 interface PublicDatabase {
@@ -102,6 +108,19 @@ function shareButton(number: string): HTMLButtonElement {
   return share;
 }
 
+function createIssueLink(entry: ScamReport): HTMLAnchorElement | null {
+  const reference = entry.references.find((candidate) => candidate.type === 'github-issue');
+  if (!reference) return null;
+
+  const link = document.createElement('a');
+  link.className = 'result-link';
+  link.href = 'https://github.com/wgtechlabs/ph-scam-db/issues/' + encodeURIComponent(String(reference.id));
+  link.target = '_blank';
+  link.rel = 'noopener noreferrer';
+  link.textContent = 'Learn more';
+  return link;
+}
+
 async function search(rawNumber: string, scroll = true): Promise<void> {
   const number = normalizePhoneNumber(rawNumber);
   if (!number) {
@@ -137,6 +156,7 @@ async function search(rawNumber: string, scroll = true): Promise<void> {
       return;
     }
 
+    const issueLink = createIssueLink(entry);
     show(entry.verdict, 'This number has community reports', [
       paragraph('Verdict: ' + entry.verdict, 'status'),
       paragraph('Risk: ' + entry.riskLevel),
@@ -144,7 +164,8 @@ async function search(rawNumber: string, scroll = true): Promise<void> {
       paragraph('Reports: ' + entry.reportCount + ' | Last observed: ' + entry.lastReportedAt),
       paragraph('Categories: ' + entry.categories.join(', ').replaceAll('-', ' ')),
       paragraph('Likely network: ' + getNetwork(number) + ' (based on number prefix)'),
-      shareButton(number)
+      shareButton(number),
+      ...(issueLink ? [issueLink] : [])
     ], scroll);
   } catch {
     show('invalid', 'Database unavailable', [paragraph('Please try again later or check the project repository for status updates.')], scroll);

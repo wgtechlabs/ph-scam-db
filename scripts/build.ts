@@ -36,15 +36,17 @@ const bundle = await Bun.build({
 });
 if (!bundle.success) throw new AggregateError(bundle.logs, 'Browser bundle failed');
 
-const markupPath = path.join(root, 'dist/index.html');
-const markup = await readFile(markupPath, 'utf8');
 const stylesheet = await readFile(path.join(root, 'dist/styles.css'), 'utf8');
 const stylesheetVersion = createHash('sha256').update(stylesheet).digest('hex').slice(0, 8);
 const stylesheetLink = /href="styles\.css(?:\?[^"]*)?"/;
-if (!stylesheetLink.test(markup)) {
-  throw new Error('Cannot add the stylesheet cache-busting version: no <link href="styles.css"> found in dist/index.html');
+for (const markupName of ['index.html', 'blocklist.html']) {
+  const markupPath = path.join(root, 'dist', markupName);
+  const markup = await readFile(markupPath, 'utf8');
+  if (!stylesheetLink.test(markup)) {
+    throw new Error('Cannot add the stylesheet cache-busting version: no <link href=\"styles.css\"> found in dist/' + markupName);
+  }
+  await writeFile(markupPath, markup.replace(new RegExp(stylesheetLink, 'g'), 'href=\"styles.css?v=' + stylesheetVersion + '\"'));
 }
-await writeFile(markupPath, markup.replace(new RegExp(stylesheetLink, 'g'), `href="styles.css?v=${stylesheetVersion}"`));
 
 await writeFile(path.join(root, 'dist/data/index.json'), `${JSON.stringify(publicIndex, null, 2)}\n`);
 await writeFile(path.join(root, 'dist/data/blocklist.json'), `${JSON.stringify(blocked.map((entry) => entry.number), null, 2)}\n`);

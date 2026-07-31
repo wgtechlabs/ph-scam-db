@@ -94,6 +94,7 @@ function shareButton(number: string): HTMLButtonElement {
   share.type = 'button';
   share.className = 'result-share';
   share.textContent = 'Copy share link';
+  let reset: number | undefined;
   share.addEventListener('click', async () => {
     try {
       await navigator.clipboard.writeText(shareLink(number));
@@ -101,7 +102,8 @@ function shareButton(number: string): HTMLButtonElement {
     } catch {
       share.textContent = 'Copy failed';
     }
-    window.setTimeout(() => { share.textContent = 'Copy share link'; }, 1800);
+    if (reset !== undefined) window.clearTimeout(reset);
+    reset = window.setTimeout(() => { share.textContent = 'Copy share link'; }, 1800);
   });
   return share;
 }
@@ -111,7 +113,7 @@ async function search(rawNumber: string, scroll = true): Promise<void> {
   if (!number) {
     input.setAttribute('aria-invalid', 'true');
     show('invalid', 'Check the number', [paragraph('Enter a Philippine mobile or landline number, including the area code for landlines.')], scroll);
-    input.focus();
+    input.focus({ preventScroll: !scroll });
     return;
   }
 

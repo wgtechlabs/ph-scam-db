@@ -137,49 +137,6 @@ Pull requests should target `dev`. Releases can be promoted from `dev` to `main`
 
 This is an early MVP. The initial database is intentionally empty: no number is published until it passes the moderation workflow. Before a public launch, maintainers should configure branch protection, GitHub Pages or another static host, labels/discussions, a private evidence channel, and named moderators.
 
-## 💬 Community Discussions
-
-Join our community discussions to get help, share ideas, and connect with other users:
-
-- 📣 **[Announcements](https://github.com/wgtechlabs/ph-scam-db/discussions/categories/announcements)**: Official updates from the maintainer
-- 📸 **[Showcase](https://github.com/wgtechlabs/ph-scam-db/discussions/categories/showcase)**: Show and tell your implementation
-- 💖 **[Wall of Love](https://github.com/wgtechlabs/ph-scam-db/discussions/categories/wall-of-love)**: Share your experience with the project
-- 🛟 **[Help & Support](https://github.com/wgtechlabs/ph-scam-db/discussions/categories/help-support)**: Get assistance from the community
-- 🧠 **[Ideas](https://github.com/wgtechlabs/ph-scam-db/discussions/categories/ideas)**: Suggest new features and improvements
-
-## 🛟 Help & Support
-
-Need help? Check our [Help & Support](https://github.com/wgtechlabs/ph-scam-db/discussions/categories/help-support) discussions or [create a new issue](https://github.com/wgtechlabs/ph-scam-db/issues/new/choose).
-
-## 🎯 Contributing
-
-**Important**: Submit pull requests to the `dev` branch following the repository workflow.
-
-Contributions are welcome! Your code must pass `bun run typecheck` before merging.
-
-## 💖 Sponsors
-
-Like this project? **Leave a star**! ⭐⭐⭐⭐⭐
-
-There are several ways you can support this project:
-
-- [Become a sponsor](https://github.com/sponsors/wgtechlabs) and get some perks! 💖
-- [Buy us a coffee](https://buymeacoffee.com/wgtechlabs) if you love what we do! ☕
-
-## ⭐ GitHub Star Nomination
-
-Found this project helpful? Consider nominating me **(@warengonzaga)** for the [GitHub Star program](https://stars.github.com/nominate/)! This recognition supports ongoing development of this project and [my other open-source projects](https://github.com/warengonzaga?tab=repositories). GitHub Stars are recognized for their significant contributions to the developer community — your nomination makes a difference and encourages continued innovation!
-
-## 📃 License
+## License
 
 The software, source records, and generated community dataset are available under the [MIT License](LICENSE). By contributing database records, contributors agree to license those contributions under the same terms.
-
-## 📝 Author
-
-This project is created by **[Waren Gonzaga](https://github.com/warengonzaga)** under [WG Technology Labs](https://github.com/wgtechlabs), with the help of awesome [contributors](https://github.com/wgtechlabs/ph-scam-db/graphs/contributors).
-
-[![contributors](https://contrib.rocks/image?repo=wgtechlabs/ph-scam-db)](https://github.com/wgtechlabs/ph-scam-db/graphs/contributors)
-
----
-
-💻💖☕ by [Waren Gonzaga](https://warengonzaga.com) | [YHWH](https://www.youtube.com/watch?v=VOZbswniA-g) 🙏 - Without _Him_, none of this exists, _even me_.

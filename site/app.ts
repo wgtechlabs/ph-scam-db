@@ -27,15 +27,19 @@ const networkByPrefix: Record<string, string> = {
 const form = getElement<HTMLFormElement>('lookup-form');
 const input = getElement<HTMLInputElement>('phone');
 const result = getElement<HTMLElement>('result');
-const button = form.querySelector<HTMLButtonElement>('button[type="submit"]')!;
+const button = getSubmitButton(form);
 let database: PublicDatabase | undefined;
-
-if (!button) throw new Error('Missing lookup button');
 
 function getElement<T extends HTMLElement>(id: string): T {
   const element = document.getElementById(id);
   if (!element) throw new Error('Missing #' + id);
   return element as T;
+}
+
+function getSubmitButton(scope: HTMLFormElement): HTMLButtonElement {
+  const element = scope.querySelector<HTMLButtonElement>('button[type="submit"]');
+  if (!element) throw new Error('Missing lookup button');
+  return element;
 }
 
 function normalizePhoneNumber(raw: string): string | null {

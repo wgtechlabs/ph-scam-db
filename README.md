@@ -161,10 +161,6 @@ There are several ways to support the project:
 - [Buy us a coffee](https://buymeacoffee.com/wgtechlabs) as a one-time thank you
 - [Leave a star](https://github.com/wgtechlabs/ph-scam-db/stargazers) to help more people find PH Scam DB
 
-## 📈 Project Status
-
-This is an early MVP. The initial database is intentionally empty: no number is published until it passes the moderation workflow. Before a public launch, maintainers should configure branch protection, GitHub Pages or another static host, labels/discussions, a private evidence channel, and named moderators.
-
 ## 📃 License
 
 The software, source records, and generated community dataset are available under the [MIT License](LICENSE). By contributing database records, contributors agree to license those contributions under the same terms.

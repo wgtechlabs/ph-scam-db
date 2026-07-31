@@ -118,7 +118,7 @@ button:focus-visible, input:focus-visible, a:focus-visible { outline: 3px solid 
 .footer-bottom-made { max-width: 560px; text-align: right; }
 
 @media (max-width: 760px) {
-  .topbar, main, .footer-inner { width: min(100% - 28px, 1040px); }
+  .topbar, main, .footer-inner { width: min(calc(100% - 28px), 1040px); }
   .topbar nav { gap: 14px; }
   .topbar nav a:first-child { display: none; }
   .hero { min-height: auto; padding: 54px 0 42px; }
@@ -127,7 +127,7 @@ button:focus-visible, input:focus-visible, a:focus-visible { outline: 3px solid 
   .trust-list { grid-template-columns: 1fr; gap: 26px; }
   .trust-list .step { margin-bottom: 14px; }
   .sponsor-section { padding: 72px 0; }
-  .sponsor-content { width: min(100% - 28px, 1040px); }
+  .sponsor-content { width: min(calc(100% - 28px), 1040px); }
   .sponsor-grid { grid-template-columns: 1fr; }
   .sponsor-float { font-size: 3.4rem; }
   .footer-main { grid-template-columns: 1fr; gap: 28px; }

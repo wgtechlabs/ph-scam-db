@@ -31,8 +31,8 @@ function normalizePhoneNumber(raw: string): string | null {
   let value = raw.trim().replace(/[\s().-]/g, '');
   if (value.startsWith('0063')) value = `+63${value.slice(4)}`;
   if (value.startsWith('63')) value = `+${value}`;
-  if (value.startsWith('09')) value = `+63${value.slice(1)}`;
-  return /^\+639\d{9}$/.test(value) ? value : null;
+  if (value.startsWith('0')) value = `+63${value.slice(1)}`;
+  return /^\+63(?:9\d{9}|[2-8]\d{8})$/.test(value) ? value : null;
 }
 
 function show(kind: string, title: string, body: HTMLParagraphElement[]): void {
@@ -56,7 +56,7 @@ form.addEventListener('submit', async (event) => {
   event.preventDefault();
   const number = normalizePhoneNumber(input.value);
   if (!number) {
-    show('invalid', 'Check the number', [paragraph('Enter an 11-digit Philippine mobile number, such as 0917 123 4567.')]);
+    show('invalid', 'Check the number', [paragraph('Enter a Philippine mobile or landline number, including the area code for landlines.')]);
     return;
   }
 

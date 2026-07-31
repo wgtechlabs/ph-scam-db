@@ -26,8 +26,8 @@ jobs:
               let number = value.trim().replace(/[\s().-]/g, '');
               if (number.startsWith('0063')) number = `+63${number.slice(4)}`;
               if (number.startsWith('63')) number = `+${number}`;
-              if (number.startsWith('09')) number = `+63${number.slice(1)}`;
-              return /^\+639\d{9}$/.test(number) ? number : '';
+              if (number.startsWith('0')) number = `+63${number.slice(1)}`;
+              return /^\+63(?:9\d{9}|[2-8]\d{8})$/.test(number) ? number : '';
             }
 
             const singleNumber = normalizeNumber(field('Phone number')?.split(/\r?\n/)[0] ?? '');

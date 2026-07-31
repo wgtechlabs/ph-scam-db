@@ -10,7 +10,7 @@ body:
     id: number
     attributes:
       label: Listed phone number
-      placeholder: +639XXXXXXXXX
+      placeholder: +639171234567 or +63281234567
     validations:
       required: true
   - type: dropdown

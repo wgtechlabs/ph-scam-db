@@ -1,5 +1,5 @@
 name: Report multiple phone numbers
-description: Submit several Philippine mobile numbers for maintainer review
+description: Submit several Philippine mobile or landline numbers for maintainer review
 title: "[Report]: auto-filled after submission"
 labels: [report, needs-triage]
 body:
@@ -13,11 +13,11 @@ body:
     id: numbers
     attributes:
       label: Phone numbers
-      description: Enter one Philippine mobile number per line. Use common local or E.164 format, such as 09171234567 or +639171234567.
+      description: Enter one Philippine mobile or landline number per line. Include the area code for landlines.
       placeholder: |
         +639171234567
-        09181234567
-        09991234567
+        (02) 8123-4567
+        +63321234567
     validations:
       required: true
   - type: dropdown

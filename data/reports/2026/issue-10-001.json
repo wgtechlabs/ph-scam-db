@@ -1,0 +1,19 @@
+{
+  "number": "+639190579107",
+  "categories": [
+    "spam"
+  ],
+  "status": "reported",
+  "riskLevel": "medium",
+  "verdict": "warn",
+  "firstReportedAt": "2026-07-31",
+  "lastReportedAt": "2026-07-31",
+  "reportCount": 1,
+  "references": [
+    {
+      "type": "github-issue",
+      "id": 10
+    }
+  ],
+  "notes": "Community report of a potential spam contact."
+}

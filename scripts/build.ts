@@ -41,7 +41,9 @@ const markup = await readFile(markupPath, 'utf8');
 const stylesheet = await readFile(path.join(root, 'dist/styles.css'), 'utf8');
 const stylesheetVersion = createHash('sha256').update(stylesheet).digest('hex').slice(0, 8);
 const stylesheetLink = /href="styles\.css(?:\?[^"]*)?"/;
-if (!stylesheetLink.test(markup)) throw new Error('dist/index.html has no styles.css link to version');
+if (!stylesheetLink.test(markup)) {
+  throw new Error('Cannot add the stylesheet cache-busting version: no <link href="styles.css"> found in dist/index.html');
+}
 await writeFile(markupPath, markup.replace(new RegExp(stylesheetLink, 'g'), `href="styles.css?v=${stylesheetVersion}"`));
 
 await writeFile(path.join(root, 'dist/data/index.json'), `${JSON.stringify(publicIndex, null, 2)}\n`);

@@ -19,7 +19,10 @@ interface PublicDatabase {
 const form = getElement<HTMLFormElement>('lookup-form');
 const input = getElement<HTMLInputElement>('phone');
 const result = getElement<HTMLElement>('result');
+const button = form.querySelector<HTMLButtonElement>('button[type="submit"]');
 let database: PublicDatabase | undefined;
+
+if (!button) throw new Error('Missing lookup button');
 
 function getElement<T extends HTMLElement>(id: string): T {
   const element = document.getElementById(id);
@@ -31,8 +34,8 @@ function normalizePhoneNumber(raw: string): string | null {
   let value = raw.trim().replace(/[\s().-]/g, '');
   if (value.startsWith('0063')) value = `+63${value.slice(4)}`;
   if (value.startsWith('63')) value = `+${value}`;
-  if (value.startsWith('09')) value = `+63${value.slice(1)}`;
-  return /^\+639\d{9}$/.test(value) ? value : null;
+  if (value.startsWith('0')) value = `+63${value.slice(1)}`;
+  return /^\+63(?:9\d{9}|[2-8]\d{8})$/.test(value) ? value : null;
 }
 
 function show(kind: string, title: string, body: HTMLParagraphElement[]): void {
@@ -56,9 +59,16 @@ form.addEventListener('submit', async (event) => {
   event.preventDefault();
   const number = normalizePhoneNumber(input.value);
   if (!number) {
-    show('invalid', 'Check the number', [paragraph('Enter an 11-digit Philippine mobile number, such as 0917 123 4567.')]);
+    input.setAttribute('aria-invalid', 'true');
+    show('invalid', 'Check the number', [paragraph('Enter a Philippine mobile or landline number, including the area code for landlines.')]);
+    input.focus();
     return;
   }
+
+  input.removeAttribute('aria-invalid');
+  button.disabled = true;
+  button.textContent = 'Checking...';
+  form.setAttribute('aria-busy', 'true');
 
   try {
     let currentDatabase = database;
@@ -83,10 +93,16 @@ form.addEventListener('submit', async (event) => {
       paragraph(`Verdict: ${entry.verdict}`, 'status'),
       paragraph(`Risk: ${entry.riskLevel}`),
       paragraph(`Status: ${entry.status}`, 'status'),
-      paragraph(`Reports: ${entry.reportCount} · Last observed: ${entry.lastReportedAt}`),
+      paragraph(`Reports: ${entry.reportCount} | Last observed: ${entry.lastReportedAt}`),
       paragraph(`Categories: ${entry.categories.join(', ').replaceAll('-', ' ')}`)
     ]);
   } catch {
     show('invalid', 'Database unavailable', [paragraph('Please try again later or check the project repository for status updates.')]);
+  } finally {
+    button.disabled = false;
+    button.textContent = 'Check number';
+    form.removeAttribute('aria-busy');
   }
 });
+
+input.addEventListener('input', () => input.removeAttribute('aria-invalid'));

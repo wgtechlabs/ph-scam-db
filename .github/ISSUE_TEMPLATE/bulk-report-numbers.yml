@@ -1,18 +1,23 @@
-name: Report a phone number
-description: Submit a Philippine mobile or landline number for maintainer review
+name: Report multiple phone numbers
+description: Submit several Philippine mobile or landline numbers for maintainer review
 title: "[Report]: auto-filled after submission"
 labels: [report, needs-triage]
 body:
   - type: markdown
     attributes:
       value: |
-        Thanks for helping protect the community. Issues are public. Do not include names, screenshots, OTPs, addresses, account balances, or other personal information.
-  - type: input
-    id: number
+        Thanks for helping protect the community. Issues are public. Do not include names, screenshots, OTPs, addresses, account balances, message transcripts, or other personal information.
+
+        Use this form only when the numbers were observed in the same campaign or pattern. For unrelated incidents, open separate reports.
+  - type: textarea
+    id: numbers
     attributes:
-      label: Phone number
-      description: Use a Philippine mobile or landline format, including the area code for landlines.
-      placeholder: 09171234567 or (02) 8123-4567
+      label: Phone numbers
+      description: Enter one Philippine mobile or landline number per line. Include the area code for landlines.
+      placeholder: |
+        +639171234567
+        (02) 8123-4567
+        +63321234567
     validations:
       required: true
   - type: dropdown
@@ -36,7 +41,7 @@ body:
     attributes:
       label: Date observed
       description: Use YYYY-MM-DD. Do not submit an incident more than 90 days old without a public source.
-      placeholder: "2026-07-28"
+      placeholder: "2026-07-30"
     validations:
       required: true
   - type: dropdown
@@ -52,11 +57,11 @@ body:
     validations:
       required: true
   - type: textarea
-    id: behavior
+    id: pattern
     attributes:
-      label: What happened?
-      description: Briefly describe the tactic. Redact all personal and financial information.
-      placeholder: The sender impersonated a delivery company and requested payment through a link.
+      label: Shared pattern
+      description: Briefly describe why these numbers belong together. Redact all personal and financial information.
+      placeholder: The messages used the same fake delivery wording and linked to the same suspicious domain.
     validations:
       required: true
   - type: input
@@ -71,7 +76,9 @@ body:
       options:
         - label: I have removed personal, financial, and authentication information.
           required: true
-        - label: I am reporting in good faith and understand that submission does not guarantee publication.
+        - label: I am reporting these numbers in good faith and understand that submission does not guarantee publication.
+          required: true
+        - label: I understand that report volume alone does not make a number confirmed.
           required: true
         - label: I understand that intentionally false reports may be rejected and restricted.
           required: true

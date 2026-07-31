@@ -6,7 +6,7 @@ By contributing code, documentation, or database records, you agree to license t
 
 ## Report a number
 
-Use the **Report a phone number** issue form. Do not open a data pull request for an unreviewed allegation. Issues are public: never attach screenshots or include names, OTPs, addresses, financial details, message transcripts, or other personal information.
+Use the **Report a phone number** issue form, or **Report multiple phone numbers** when the numbers are part of the same campaign or pattern. Do not open a data pull request for an unreviewed allegation. Issues are public: never attach screenshots or include names, OTPs, addresses, financial details, message transcripts, or other personal information.
 
 Maintainers triage the report, check for duplicates and spoofing indicators, and assign a status under [MODERATION.md](MODERATION.md). After review, a maintainer creates or approves the data change and links the source issue.
 

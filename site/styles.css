@@ -49,7 +49,8 @@ button:focus-visible, input:focus-visible, a:focus-visible { outline: 3px solid 
 .result[data-kind="invalid"] { border-left-color: var(--warning); }
 .result h2 { margin: 0 0 9px; font-size: 1.25rem; }
 .result p { margin: 5px 0; color: var(--muted); }
-.result .status { color: var(--ink); font-weight: 800; text-transform: capitalize; }\n.result-share { margin-top: 14px; padding: 9px 13px; font-size: .86rem; }
+.result .status { color: var(--ink); font-weight: 800; text-transform: capitalize; }
+.result-share { margin-top: 14px; padding: 9px 13px; font-size: .86rem; }
 .report-prompt { display: flex; align-items: center; justify-content: space-between; max-width: 720px; gap: 20px; margin: 0; padding: 22px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
 .report-prompt p { margin: 0; color: var(--muted); font-size: .9rem; }
 .report-prompt div { display: flex; gap: 18px; }

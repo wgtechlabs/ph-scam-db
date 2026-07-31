@@ -40,9 +40,9 @@ const markupPath = path.join(root, 'dist/index.html');
 const markup = await readFile(markupPath, 'utf8');
 const stylesheet = await readFile(path.join(root, 'dist/styles.css'), 'utf8');
 const stylesheetVersion = createHash('sha256').update(stylesheet).digest('hex').slice(0, 8);
-const versionedMarkup = markup.replace(/href="styles\.css(?:\?[^"]*)?"/g, `href="styles.css?v=${stylesheetVersion}"`);
-if (versionedMarkup === markup) throw new Error('dist/index.html has no styles.css link to version');
-await writeFile(markupPath, versionedMarkup);
+const stylesheetLink = /href="styles\.css(?:\?[^"]*)?"/;
+if (!stylesheetLink.test(markup)) throw new Error('dist/index.html has no styles.css link to version');
+await writeFile(markupPath, markup.replace(new RegExp(stylesheetLink, 'g'), `href="styles.css?v=${stylesheetVersion}"`));
 
 await writeFile(path.join(root, 'dist/data/index.json'), `${JSON.stringify(publicIndex, null, 2)}\n`);
 await writeFile(path.join(root, 'dist/data/blocklist.json'), `${JSON.stringify(blocked.map((entry) => entry.number), null, 2)}\n`);

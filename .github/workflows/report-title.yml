@@ -19,7 +19,7 @@ jobs:
 
             function field(label) {
               const escaped = label.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-              return body.match(new RegExp(`^### ${escaped}\\s+([\\s\\S]*?)(?=\\n###|$)`, 'm'))?.[1].trim();
+              return body.match(new RegExp(`^### ${escaped}\\s+([\\s\\S]*?)(?=\\n###|$(?![\\s\\S]))`, 'm'))?.[1].trim();
             }
 
             function normalizeNumber(value) {

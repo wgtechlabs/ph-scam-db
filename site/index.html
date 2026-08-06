@@ -25,9 +25,8 @@
     <main>
       <section class="hero" aria-labelledby="title">
         <div class="hero-copy">
-          <p class="eyebrow">Community-maintained scam registry</p>
           <h1 id="title">Check a Philippine phone number</h1>
-          <p class="lede">See whether a number has community reports before you answer, reply, or send money.</p>
+          <p class="lede">Search community reports before you answer, reply, or send money.</p>
         </div>
 
         <form id="lookup-form" class="lookup" novalidate>
@@ -36,7 +35,7 @@
             <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="0917 123 4567 or (02) 8123 4567" aria-describedby="phone-hint" required>
             <button type="submit">Check number</button>
           </div>
-          <p id="phone-hint" class="hint">Common +63, 09, and area-code formats work. Your search stays in this browser. A share link puts the number in the URL, so anyone you send it to (and the host serving the link) can see it.</p>
+          <p id="phone-hint" class="hint">Common +63, 09, and area-code formats work. No account needed; your search stays in this browser.</p>
         </form>
 
         <section id="result" class="result" aria-live="polite" hidden></section>
@@ -49,6 +48,10 @@
           <a href="https://github.com/wgtechlabs/ph-scam-db/issues/new?template=bulk-report-numbers.yml">Report multiple numbers</a>
         </div>
       </section>
+      <details class="report-guidance">
+        <summary>Before you report</summary>
+        <p>Include the number and scam type. Do not submit one-time codes, passwords, or personal details. Reporting opens a GitHub form for maintainer review.</p>
+      </details>
 
       <section class="trust" aria-labelledby="trust-title">
         <div class="section-intro">
@@ -74,36 +77,46 @@
         </div>
       </section>
 
-      <section class="integrators" aria-labelledby="integrators-title">
-        <div class="integrators-card">
-          <h2 id="integrators-title">For integrators</h2>
-          <p>Want to build with PH Scam DB data? Start with these resources:</p>
+      <section class="integrators" aria-label="For integrators">
+        <details class="integrators-card">
+          <summary>
+            <span>For integrators</span>
+            <span>Build with PH Scam DB data</span>
+          </summary>
+          <div class="integrators-content">
+          <p>Schema version 2. Refresh the feed at your own cadence, and treat a missing match as unknown, not safe.</p>
           <div class="integrators-links">
             <a href="data/index.json">Open Data (JSON)</a>
             <a href="data/blocklist.txt">Confirmed Blocklist (TXT)</a>
           </div>
-          <div class="code-tabs" role="tablist" aria-label="Integration language examples">
-            <button type="button" class="code-tab is-active" role="tab" aria-selected="true" aria-controls="code-node" id="tab-node" data-code-tab="node">Node.js</button>
-            <button type="button" class="code-tab" role="tab" aria-selected="false" aria-controls="code-python" id="tab-python" data-code-tab="python">Python</button>
-            <button type="button" class="code-tab" role="tab" aria-selected="false" aria-controls="code-curl" id="tab-curl" data-code-tab="curl">cURL</button>
-          </div>
-          <div class="code-actions">
-            <button type="button" class="code-copy" data-copy-target="node">Copy</button>
-            <button type="button" class="code-copy" data-copy-target="python" hidden>Copy</button>
-            <button type="button" class="code-copy" data-copy-target="curl" hidden>Copy</button>
-          </div>
-          <pre class="integrators-snippet code-panel is-active" id="code-node" role="tabpanel" aria-labelledby="tab-node" data-code-panel="node" data-plain-code="const data = await fetch('https://wgtechlabs.com/ph-scam-db/data/index.json').then((r) => r.json());
+          <div class="code-example">
+            <div class="code-example-header">
+              <div class="code-tabs" role="tablist" aria-label="Integration language examples">
+                <button type="button" class="code-tab is-active" role="tab" aria-selected="true" aria-controls="code-node" id="tab-node" data-code-tab="node" tabindex="0">Node.js</button>
+                <button type="button" class="code-tab" role="tab" aria-selected="false" aria-controls="code-python" id="tab-python" data-code-tab="python" tabindex="-1">Python</button>
+                <button type="button" class="code-tab" role="tab" aria-selected="false" aria-controls="code-curl" id="tab-curl" data-code-tab="curl" tabindex="-1">cURL</button>
+              </div>
+              <div class="code-actions">
+                <button type="button" class="code-copy" data-copy-target="node">Copy</button>
+                <button type="button" class="code-copy" data-copy-target="python" hidden>Copy</button>
+                <button type="button" class="code-copy" data-copy-target="curl" hidden>Copy</button>
+              </div>
+            </div>
+            <pre class="integrators-snippet code-panel is-active" id="code-node" role="tabpanel" aria-labelledby="tab-node" data-code-panel="node" data-plain-code="const data = await fetch('https://wgtechlabs.com/ph-scam-db/data/index.json').then((r) => r.json());
 const reports = data.entries ?? [];"><code><span class="tk-k">const</span> <span class="tk-v">data</span> <span class="tk-o">=</span> <span class="tk-k">await</span> <span class="tk-f">fetch</span>(<span class="tk-s">'https://wgtechlabs.com/ph-scam-db/data/index.json'</span>).<span class="tk-f">then</span>((<span class="tk-v">r</span>) <span class="tk-o">=&gt;</span> <span class="tk-v">r</span>.<span class="tk-f">json</span>());
 <span class="tk-k">const</span> <span class="tk-v">reports</span> <span class="tk-o">=</span> <span class="tk-v">data</span>.<span class="tk-v">entries</span> <span class="tk-o">??</span> [];</code></pre>
-          <pre class="integrators-snippet code-panel" id="code-python" role="tabpanel" aria-labelledby="tab-python" data-code-panel="python" data-plain-code="import requests
+            <pre class="integrators-snippet code-panel" id="code-python" role="tabpanel" aria-labelledby="tab-python" data-code-panel="python" data-plain-code="import requests
 
 data = requests.get('https://wgtechlabs.com/ph-scam-db/data/index.json', timeout=10).json()
 reports = data.get('entries', [])" hidden><code><span class="tk-k">import</span> <span class="tk-v">requests</span>
 
 <span class="tk-v">data</span> <span class="tk-o">=</span> <span class="tk-v">requests</span>.<span class="tk-f">get</span>(<span class="tk-s">"https://wgtechlabs.com/ph-scam-db/data/index.json"</span>, <span class="tk-v">timeout</span><span class="tk-o">=</span><span class="tk-n">10</span>).<span class="tk-f">json</span>()
 <span class="tk-v">reports</span> <span class="tk-o">=</span> <span class="tk-v">data</span>.<span class="tk-f">get</span>(<span class="tk-s">"entries"</span>, [])</code></pre>
-          <pre class="integrators-snippet code-panel" id="code-curl" role="tabpanel" aria-labelledby="tab-curl" data-code-panel="curl" data-plain-code="curl https://wgtechlabs.com/ph-scam-db/data/index.json" hidden><code><span class="tk-f">curl</span> <span class="tk-s">https://wgtechlabs.com/ph-scam-db/data/index.json</span></code></pre>
-        </div>
+            <pre class="integrators-snippet code-panel" id="code-curl" role="tabpanel" aria-labelledby="tab-curl" data-code-panel="curl" data-plain-code="curl https://wgtechlabs.com/ph-scam-db/data/index.json" hidden><code><span class="tk-f">curl</span> <span class="tk-s">https://wgtechlabs.com/ph-scam-db/data/index.json</span></code></pre>
+          </div>
+          <p id="code-copy-status" class="sr-only" aria-live="polite"></p>
+          </div>
+        </details>
       </section>
 
     </main>
@@ -147,23 +160,36 @@ reports = data.get('entries', [])" hidden><code><span class="tk-k">import</span>
       const tabs = document.querySelectorAll('[data-code-tab]');
       const panels = document.querySelectorAll('[data-code-panel]');
       const copyButtons = document.querySelectorAll('[data-copy-target]');
+      const copyStatus = document.getElementById('code-copy-status');
+
+      function activateTab(tab, focus = false) {
+        const key = tab.getAttribute('data-code-tab');
+        tabs.forEach((item) => {
+          const active = item === tab;
+          item.classList.toggle('is-active', active);
+          item.setAttribute('aria-selected', active ? 'true' : 'false');
+          item.tabIndex = active ? 0 : -1;
+        });
+        panels.forEach((panel) => {
+          const active = panel.getAttribute('data-code-panel') === key;
+          panel.classList.toggle('is-active', active);
+          panel.toggleAttribute('hidden', !active);
+        });
+        copyButtons.forEach((button) => {
+          button.toggleAttribute('hidden', button.getAttribute('data-copy-target') !== key);
+        });
+        if (focus) tab.focus();
+      }
+
       tabs.forEach((tab) => {
-        tab.addEventListener('click', () => {
-          const key = tab.getAttribute('data-code-tab');
-          tabs.forEach((item) => {
-            const active = item === tab;
-            item.classList.toggle('is-active', active);
-            item.setAttribute('aria-selected', active ? 'true' : 'false');
-          });
-          panels.forEach((panel) => {
-            const active = panel.getAttribute('data-code-panel') === key;
-            panel.classList.toggle('is-active', active);
-            panel.toggleAttribute('hidden', !active);
-          });
-          copyButtons.forEach((button) => {
-            const active = button.getAttribute('data-copy-target') === key;
-            button.toggleAttribute('hidden', !active);
-          });
+        tab.addEventListener('click', () => activateTab(tab));
+        tab.addEventListener('keydown', (event) => {
+          const current = Array.from(tabs).indexOf(tab);
+          const keys = { ArrowLeft: current - 1, ArrowRight: current + 1, Home: 0, End: tabs.length - 1 };
+          const target = keys[event.key];
+          if (target === undefined) return;
+          event.preventDefault();
+          activateTab(tabs[(target + tabs.length) % tabs.length], true);
         });
       });
       copyButtons.forEach((button) => {
@@ -175,9 +201,16 @@ reports = data.get('entries', [])" hidden><code><span class="tk-k">import</span>
           try {
             await navigator.clipboard.writeText(text);
             button.textContent = 'Copied';
+            copyStatus.textContent = 'Code copied to clipboard.';
             window.setTimeout(() => { button.textContent = 'Copy'; }, 1500);
           } catch {
-            button.textContent = 'Copy failed';
+            const selection = window.getSelection();
+            const range = document.createRange();
+            range.selectNodeContents(panel);
+            selection?.removeAllRanges();
+            selection?.addRange(range);
+            button.textContent = 'Code selected';
+            copyStatus.textContent = 'Clipboard access failed. The code is selected so you can copy it manually.';
             window.setTimeout(() => { button.textContent = 'Copy'; }, 1500);
           }
         });

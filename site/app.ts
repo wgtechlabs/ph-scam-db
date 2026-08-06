@@ -15,6 +15,7 @@ interface ScamReport {
 }
 
 interface PublicDatabase {
+  generatedAt: string;
   entries: ScamReport[];
 }
 
@@ -61,6 +62,10 @@ function paragraph(text: string, className?: string): HTMLParagraphElement {
   return element;
 }
 
+function generatedAt(value: string): string {
+  return new Intl.DateTimeFormat('en-PH', { dateStyle: 'medium' }).format(new Date(value));
+}
+
 function getNetwork(number: string): string {
   if (number.startsWith('+63') && number[3] === '9') {
     return networkByPrefix[number.slice(3, 6)] ?? 'Unknown mobile network';
@@ -102,6 +107,10 @@ function shareButton(number: string): HTMLButtonElement {
   return share;
 }
 
+function shareNotice(): HTMLParagraphElement {
+  return paragraph('A share link includes this number in its URL. Send it only to people you trust.', 'result-share-note');
+}
+
 async function search(rawNumber: string, scroll = true): Promise<void> {
   const number = normalizePhoneNumber(rawNumber);
   if (!number) {
@@ -129,9 +138,10 @@ async function search(rawNumber: string, scroll = true): Promise<void> {
     const entry = currentDatabase.entries.find((candidate) => candidate.number === number);
     if (!entry) {
       show('clear', 'No reports found', [
-        paragraph('This number is not in the current community database.'),
+        paragraph('No community reports were found in the database generated ' + generatedAt(currentDatabase.generatedAt) + '.'),
         paragraph('Likely network: ' + getNetwork(number)),
-        paragraph('This does not guarantee the number is safe. Stay cautious with unexpected requests for money, passwords, or one-time codes.'),
+        paragraph('This is not a safety guarantee. Do not send money, passwords, or one-time codes to an unverified caller.', 'status'),
+        shareNotice(),
         shareButton(number)
       ], scroll);
       return;
@@ -144,6 +154,8 @@ async function search(rawNumber: string, scroll = true): Promise<void> {
       paragraph('Reports: ' + entry.reportCount + ' | Last observed: ' + entry.lastReportedAt),
       paragraph('Categories: ' + entry.categories.join(', ').replaceAll('-', ' ')),
       paragraph('Likely network: ' + getNetwork(number) + ' (based on number prefix)'),
+      paragraph('Do not send money, passwords, or one-time codes. Verify the caller through an independent contact channel.', 'status'),
+      shareNotice(),
       shareButton(number)
     ], scroll);
   } catch {

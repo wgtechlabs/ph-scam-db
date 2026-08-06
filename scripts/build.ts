@@ -39,7 +39,7 @@ if (!bundle.success) throw new AggregateError(bundle.logs, 'Browser bundle faile
 const stylesheet = await readFile(path.join(root, 'dist/styles.css'), 'utf8');
 const stylesheetVersion = createHash('sha256').update(stylesheet).digest('hex').slice(0, 8);
 const stylesheetLink = /href="styles\.css(?:\?[^"]*)?"/;
-for (const markupName of ['index.html', 'blocklist.html']) {
+for (const markupName of ['index.html', 'blocklist.html', 'support.html']) {
   const markupPath = path.join(root, 'dist', markupName);
   const markup = await readFile(markupPath, 'utf8');
   if (!stylesheetLink.test(markup)) {

@@ -74,6 +74,38 @@
         </div>
       </section>
 
+      <section class="integrators" aria-labelledby="integrators-title">
+        <div class="integrators-card">
+          <h2 id="integrators-title">For integrators</h2>
+          <p>Want to build with PH Scam DB data? Start with these resources:</p>
+          <div class="integrators-links">
+            <a href="data/index.json">Open Data (JSON)</a>
+            <a href="data/blocklist.txt">Confirmed Blocklist (TXT)</a>
+          </div>
+          <div class="code-tabs" role="tablist" aria-label="Integration language examples">
+            <button type="button" class="code-tab is-active" role="tab" aria-selected="true" aria-controls="code-node" id="tab-node" data-code-tab="node">Node.js</button>
+            <button type="button" class="code-tab" role="tab" aria-selected="false" aria-controls="code-python" id="tab-python" data-code-tab="python">Python</button>
+            <button type="button" class="code-tab" role="tab" aria-selected="false" aria-controls="code-curl" id="tab-curl" data-code-tab="curl">cURL</button>
+          </div>
+          <div class="code-actions">
+            <button type="button" class="code-copy" data-copy-target="node">Copy</button>
+            <button type="button" class="code-copy" data-copy-target="python" hidden>Copy</button>
+            <button type="button" class="code-copy" data-copy-target="curl" hidden>Copy</button>
+          </div>
+          <pre class="integrators-snippet code-panel is-active" id="code-node" role="tabpanel" aria-labelledby="tab-node" data-code-panel="node" data-plain-code="const data = await fetch('https://wgtechlabs.com/ph-scam-db/data/index.json').then((r) => r.json());
+const reports = data.entries ?? [];"><code><span class="tk-k">const</span> <span class="tk-v">data</span> <span class="tk-o">=</span> <span class="tk-k">await</span> <span class="tk-f">fetch</span>(<span class="tk-s">'https://wgtechlabs.com/ph-scam-db/data/index.json'</span>).<span class="tk-f">then</span>((<span class="tk-v">r</span>) <span class="tk-o">=&gt;</span> <span class="tk-v">r</span>.<span class="tk-f">json</span>());
+<span class="tk-k">const</span> <span class="tk-v">reports</span> <span class="tk-o">=</span> <span class="tk-v">data</span>.<span class="tk-v">entries</span> <span class="tk-o">??</span> [];</code></pre>
+          <pre class="integrators-snippet code-panel" id="code-python" role="tabpanel" aria-labelledby="tab-python" data-code-panel="python" data-plain-code="import requests
+
+data = requests.get('https://wgtechlabs.com/ph-scam-db/data/index.json', timeout=10).json()
+reports = data.get('entries', [])" hidden><code><span class="tk-k">import</span> <span class="tk-v">requests</span>
+
+<span class="tk-v">data</span> <span class="tk-o">=</span> <span class="tk-v">requests</span>.<span class="tk-f">get</span>(<span class="tk-s">"https://wgtechlabs.com/ph-scam-db/data/index.json"</span>, <span class="tk-v">timeout</span><span class="tk-o">=</span><span class="tk-n">10</span>).<span class="tk-f">json</span>()
+<span class="tk-v">reports</span> <span class="tk-o">=</span> <span class="tk-v">data</span>.<span class="tk-f">get</span>(<span class="tk-s">"entries"</span>, [])</code></pre>
+          <pre class="integrators-snippet code-panel" id="code-curl" role="tabpanel" aria-labelledby="tab-curl" data-code-panel="curl" data-plain-code="curl https://wgtechlabs.com/ph-scam-db/data/index.json" hidden><code><span class="tk-f">curl</span> <span class="tk-s">https://wgtechlabs.com/ph-scam-db/data/index.json</span></code></pre>
+        </div>
+      </section>
+
     </main>
 
     <footer class="footer">
@@ -111,5 +143,45 @@
         </div>
       </div>
     </footer>
+    <script>
+      const tabs = document.querySelectorAll('[data-code-tab]');
+      const panels = document.querySelectorAll('[data-code-panel]');
+      const copyButtons = document.querySelectorAll('[data-copy-target]');
+      tabs.forEach((tab) => {
+        tab.addEventListener('click', () => {
+          const key = tab.getAttribute('data-code-tab');
+          tabs.forEach((item) => {
+            const active = item === tab;
+            item.classList.toggle('is-active', active);
+            item.setAttribute('aria-selected', active ? 'true' : 'false');
+          });
+          panels.forEach((panel) => {
+            const active = panel.getAttribute('data-code-panel') === key;
+            panel.classList.toggle('is-active', active);
+            panel.toggleAttribute('hidden', !active);
+          });
+          copyButtons.forEach((button) => {
+            const active = button.getAttribute('data-copy-target') === key;
+            button.toggleAttribute('hidden', !active);
+          });
+        });
+      });
+      copyButtons.forEach((button) => {
+        button.addEventListener('click', async () => {
+          const key = button.getAttribute('data-copy-target');
+          const panel = document.querySelector('[data-code-panel="' + key + '"]');
+          const text = panel?.getAttribute('data-plain-code');
+          if (!text) return;
+          try {
+            await navigator.clipboard.writeText(text);
+            button.textContent = 'Copied';
+            window.setTimeout(() => { button.textContent = 'Copy'; }, 1500);
+          } catch {
+            button.textContent = 'Copy failed';
+            window.setTimeout(() => { button.textContent = 'Copy'; }, 1500);
+          }
+        });
+      });
+    </script>
   </body>
 </html>

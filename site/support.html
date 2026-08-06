@@ -3,12 +3,11 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Check community reports about Philippine mobile and landline numbers.">
+    <meta name="description" content="Optional ways to support PH Scam DB open source maintenance.">
     <meta name="theme-color" content="#07101f">
-    <title>PH Scam DB - Check a number</title>
+    <title>PH Scam DB - Support the project</title>
     <link rel="icon" href="logo.png" type="image/png">
     <link rel="stylesheet" href="styles.css">
-    <script type="module" src="app.js"></script>
   </head>
   <body>
     <header class="topbar">
@@ -17,63 +16,49 @@
         <span>PH Scam DB</span>
       </a>
       <nav aria-label="Primary navigation">
-        <a href="https://github.com/wgtechlabs/ph-scam-db/issues/new?template=bulk-report-numbers.yml">Bulk report</a>
+        <a href="./">Back to homepage</a>
         <a class="nav-action" href="https://github.com/wgtechlabs/ph-scam-db/issues/new?template=report-number.yml">Report a number</a>
       </nav>
     </header>
 
     <main>
-      <section class="hero" aria-labelledby="title">
-        <div class="hero-copy">
-          <p class="eyebrow">Community-maintained scam registry</p>
-          <h1 id="title">Check a Philippine phone number</h1>
-          <p class="lede">See whether a number has community reports before you answer, reply, or send money.</p>
+      <section id="sponsor" class="sponsor-section" aria-labelledby="sponsor-title">
+        <div class="sponsor-backdrop" aria-hidden="true">
+          <span class="sponsor-float sponsor-float-heart">&#x2764;</span>
+          <span class="sponsor-float sponsor-float-money">&#x1F4B8;</span>
+          <span class="sponsor-float sponsor-float-heart-alt">&#x1F496;</span>
+          <span class="sponsor-float sponsor-float-coffee">&#x2615;</span>
+          <span class="sponsor-float sponsor-float-magic">&#x2728;</span>
+          <span class="sponsor-float sponsor-float-coin">&#x1FA99;</span>
+          <span class="sponsor-float sponsor-float-spark">&#x1F4AB;</span>
+          <span class="sponsor-float sponsor-float-gift">&#x1F381;</span>
+          <span class="sponsor-float sponsor-float-heart-small">&#x1F49D;</span>
+          <span class="sponsor-float sponsor-float-bill">&#x1F4B0;</span>
         </div>
 
-        <form id="lookup-form" class="lookup" novalidate>
-          <label for="phone">Phone number</label>
-          <div class="input-row">
-            <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="0917 123 4567 or (02) 8123 4567" aria-describedby="phone-hint" required>
-            <button type="submit">Check number</button>
+        <div class="sponsor-content">
+          <div class="sponsor-header">
+            <h1 id="sponsor-title">Support this open source project</h1>
+            <p>If PH Scam DB helped you, these are optional ways to support ongoing maintenance.</p>
           </div>
-          <p id="phone-hint" class="hint">Common +63, 09, and area-code formats work. Your search stays in this browser. A share link puts the number in the URL, so anyone you send it to (and the host serving the link) can see it.</p>
-        </form>
 
-        <section id="result" class="result" aria-live="polite" hidden></section>
-      </section>
+          <div class="sponsor-grid">
+            <article class="sponsor-card sponsor-card-github">
+              <div class="sponsor-icon" aria-hidden="true">&#x2764;</div>
+              <h2>GitHub Sponsors</h2>
+              <p>Become a sponsor and help fund ongoing open source development.</p>
+              <a href="https://github.com/sponsors/wgtechlabs" class="sponsor-button sponsor-button-github" target="_blank" rel="noopener noreferrer">Become a Sponsor</a>
+            </article>
 
-      <section class="report-prompt" aria-label="Report suspicious numbers">
-        <p>Received something suspicious?</p>
-        <div>
-          <a href="https://github.com/wgtechlabs/ph-scam-db/issues/new?template=report-number.yml">Report one number</a>
-          <a href="https://github.com/wgtechlabs/ph-scam-db/issues/new?template=bulk-report-numbers.yml">Report multiple numbers</a>
+            <article class="sponsor-card sponsor-card-coffee">
+              <div class="sponsor-icon" aria-hidden="true">&#x2615;</div>
+              <h2>Buy Me a Coffee</h2>
+              <p>A one-time coffee is a simple way to say thanks and keep this project going.</p>
+              <a href="https://buymeacoffee.com/wgtechlabs" class="sponsor-button sponsor-button-coffee" target="_blank" rel="noopener noreferrer">Buy Me a Coffee</a>
+            </article>
+          </div>
         </div>
       </section>
-
-      <section class="trust" aria-labelledby="trust-title">
-        <div class="section-intro">
-          <p class="eyebrow">What to expect</p>
-          <h2 id="trust-title">Useful context, not a final verdict</h2>
-        </div>
-        <div class="trust-list">
-          <article>
-            <p class="step">01</p>
-            <h3>Community reports</h3>
-            <p>Entries come from public submissions reviewed by maintainers.</p>
-          </article>
-          <article>
-            <p class="step">02</p>
-            <h3>Clear status</h3>
-            <p>Results show report count, risk, category, and review status.</p>
-          </article>
-          <article>
-            <p class="step">03</p>
-            <h3>Stay cautious</h3>
-            <p>No result does not guarantee a number is safe.</p>
-          </article>
-        </div>
-      </section>
-
     </main>
 
     <footer class="footer">

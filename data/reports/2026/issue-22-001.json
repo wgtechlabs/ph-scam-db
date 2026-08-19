@@ -1,0 +1,20 @@
+{
+  "number": "+639171868374",
+  "categories": [
+    "loan",
+    "robocall"
+  ],
+  "status": "reported",
+  "riskLevel": "medium",
+  "verdict": "warn",
+  "firstReportedAt": "2026-08-18",
+  "lastReportedAt": "2026-08-19",
+  "reportCount": 1,
+  "references": [
+    {
+      "type": "github-issue",
+      "id": 22
+    }
+  ],
+  "notes": "Community report of a suspected spam call advertising a loan app with an automated voice."
+}

@@ -1,0 +1,19 @@
+{
+  "number": "+639171693282",
+  "categories": [
+    "spam"
+  ],
+  "status": "reported",
+  "riskLevel": "medium",
+  "verdict": "warn",
+  "firstReportedAt": "2026-08-19",
+  "lastReportedAt": "2026-08-19",
+  "reportCount": 1,
+  "references": [
+    {
+      "type": "github-issue",
+      "id": 22
+    }
+  ],
+  "notes": "Community report of a phone call carrying a caller-app warning label."
+}
